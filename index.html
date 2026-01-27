@@ -215,7 +215,7 @@
                             <a href="#" class="hover:text-pink-500 transition-colors transform hover:scale-110 duration-300"><i class="fab fa-instagram"></i></a>
                             <a href="#" class="hover:text-red-600 transition-colors transform hover:scale-110 duration-300"><i class="fab fa-youtube"></i></a>
                             <a href="#" class="hover:text-blue-600 transition-colors transform hover:scale-110 duration-300"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="hover:text-black transition-colors transform hover:scale-110 duration-300"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="hover:text-black transition-colors transform hover:scale-110 duration-300 bg-white rounded-lg p-1 text-4xl h-fit self-center flex items-center"><i class="fab fa-tiktok"></i></a>
                         </div>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
         </div>
     </section>
 
-    <!-- Plans Section (Simple Grid) -->
+    <!-- Plans Section (Updated with 5 Plans) -->
     <section id="planos" class="py-20 bg-gray-100 reveal">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -261,109 +261,181 @@
             </div>
 
             <!-- Wrapper Window for Slider -->
-            <div class="relative max-w-6xl mx-auto overflow-hidden md:overflow-visible">
-                <!-- Standard Grid/Slider -->
-                <div id="plans-track" class="flex transition-transform duration-500 ease-out md:grid md:grid-cols-3 md:gap-8 md:transform-none">
+            <div class="relative max-w-7xl mx-auto overflow-hidden md:overflow-visible">
+                <!-- Track: Slider on mobile, Centered Flex/Grid on Desktop -->
+                <div id="plans-track" class="flex transition-transform duration-500 ease-out md:flex md:flex-wrap md:justify-center md:gap-6 md:transform-none">
                     
-                    <!-- Plan 1 -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-auto flex-shrink-0 flex flex-col">
+                    <!-- Plan 1: Start 100MB -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
                         <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
                             <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
-                                <h3 class="text-4xl font-black text-white italic">300 <span class="text-2xl">MEGA</span></h3>
+                                <h3 class="text-4xl font-black text-white italic">100 <span class="text-2xl">MEGA</span></h3>
+                                <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Start</p>
                             </div>
-                            <div class="p-8 text-center bg-brand-dark">
+                            <div class="p-6 text-center bg-brand-dark relative">
+                                <div class="flex justify-center items-end gap-1 text-white">
+                                    <span class="text-lg mb-4 opacity-70">R$</span>
+                                    <span class="text-6xl font-black text-brand-accent">64</span>
+                                    <div class="text-left mb-2">
+                                        <span class="block text-2xl font-bold text-brand-accent">,90</span>
+                                        <span class="block text-xs opacity-70">/mês</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 69,90</p>
+                                <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
+                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
+                                </ul>
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Start%20(100%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                    Eu Quero
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Plan 2: Turbo 200MB -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
+                                <h3 class="text-4xl font-black text-white italic">200 <span class="text-2xl">MEGA</span></h3>
+                                <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Turbo</p>
+                            </div>
+                            <div class="p-6 text-center bg-brand-dark relative">
                                 <div class="flex justify-center items-end gap-1 text-white">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
                                     <span class="text-6xl font-black text-brand-accent">69</span>
                                     <div class="text-left mb-2">
-                                        <span class="block text-2xl font-bold text-brand-accent">,99</span>
+                                        <span class="block text-2xl font-bold text-brand-accent">,90</span>
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
+                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 74,90</p>
                                 <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-8 flex-1 flex flex-col justify-between">
-                                <ul class="space-y-4 text-gray-700 text-sm font-medium mb-8">
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Fibra Óptica de ponta a ponta</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Wi-Fi 5G Grátis</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Suporte Técnico Especializado</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Instalação Grátis</li>
-                                    <li class="flex items-center gap-3 text-gray-400"><i class="fas fa-info-circle"></i> Consulte fidelidade</li>
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
+                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20300%20MEGA" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Turbo%20(200%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Plan 2 -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-auto flex-shrink-0 flex flex-col">
-                        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden md:-translate-y-4 border-2 border-brand-accent relative h-full flex flex-col">
+                    <!-- Plan 3: Ultra 400MB -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden md:-translate-y-2 border-2 border-brand-accent relative h-full flex flex-col transform scale-105 md:scale-100 lg:scale-105 z-10">
                             <div class="absolute top-4 right-4 bg-brand-accent text-brand-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Mais Vendido</div>
                             <div class="bg-brand-dark py-8 text-center relative overflow-hidden">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
-                                <h3 class="text-5xl font-black text-white italic">500 <span class="text-3xl">MEGA</span></h3>
+                                <h3 class="text-5xl font-black text-white italic">400 <span class="text-3xl">MEGA</span></h3>
+                                <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Ultra</p>
                             </div>
-                            <div class="p-8 text-center bg-brand-primary">
+                            <div class="p-6 text-center bg-brand-primary relative">
                                 <div class="flex justify-center items-end gap-1 text-white">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
-                                    <span class="text-7xl font-black text-brand-accent">89</span>
+                                    <span class="text-7xl font-black text-brand-accent">79</span>
                                     <div class="text-left mb-2">
-                                        <span class="block text-3xl font-bold text-brand-accent">,99</span>
+                                        <span class="block text-3xl font-bold text-brand-accent">,90</span>
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
+                                <p class="text-gray-300 text-xs line-through absolute top-2 right-4">R$ 84,90</p>
                                 <p class="text-white/80 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-8 flex-1 flex flex-col justify-between">
-                                <ul class="space-y-4 text-gray-700 text-sm font-bold mb-8">
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Fibra Óptica 100%</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Wi-Fi 6 (Alta Performance)</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Suporte Prioritário</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Apps de Conteúdo Inclusos</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Instalação Grátis</li>
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-3 text-gray-700 text-sm font-bold mb-6">
+                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-primary"></i> Wi-Fi 6 Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-primary"></i> Paramount+ Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-primary"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-primary"></i> Instalação Grátis</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20500%20MEGA" target="_blank" class="block w-full bg-brand-primary hover:bg-blue-800 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase animate-pulse">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Ultra%20(400%20MB)" target="_blank" class="block w-full bg-brand-primary hover:bg-blue-800 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase animate-pulse">
                                     Eu Quero
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Plan 3 -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-auto flex-shrink-0 flex flex-col">
+                    <!-- Plan 4: Max 500MB -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
+                                <h3 class="text-4xl font-black text-white italic">500 <span class="text-2xl">MEGA</span></h3>
+                                <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Max</p>
+                            </div>
+                            <div class="p-6 text-center bg-brand-dark relative">
+                                <div class="flex justify-center items-end gap-1 text-white">
+                                    <span class="text-lg mb-4 opacity-70">R$</span>
+                                    <span class="text-6xl font-black text-brand-accent">89</span>
+                                    <div class="text-left mb-2">
+                                        <span class="block text-2xl font-bold text-brand-accent">,90</span>
+                                        <span class="block text-xs opacity-70">/mês</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 99,90</p>
+                                <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
+                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
+                                </ul>
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Max%20(500%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                    Eu Quero
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Plan 5: Power 700MB -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
                         <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
                             <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">700 <span class="text-2xl">MEGA</span></h3>
+                                <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Power</p>
                             </div>
-                            <div class="p-8 text-center bg-brand-dark">
+                            <div class="p-6 text-center bg-brand-dark relative">
                                 <div class="flex justify-center items-end gap-1 text-white">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
                                     <span class="text-6xl font-black text-brand-accent">99</span>
                                     <div class="text-left mb-2">
-                                        <span class="block text-2xl font-bold text-brand-accent">,99</span>
+                                        <span class="block text-2xl font-bold text-brand-accent">,90</span>
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
+                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 104,90</p>
                                 <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-8 flex-1 flex flex-col justify-between">
-                                <ul class="space-y-4 text-gray-700 text-sm font-medium mb-8">
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Ideal para Gamers</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Upload Turbinado</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> IP Fixo (Opcional)</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Suporte Premium</li>
-                                    <li class="flex items-center gap-3 text-gray-400"><i class="fas fa-info-circle"></i> Consulte fidelidade</li>
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
+                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20700%20MEGA" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Power%20(700%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
                                 </a>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Plans Dots Navigation (Mobile Only) -->
