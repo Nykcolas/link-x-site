@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkX Telecon - Provedor de Internet</title>
+    <link rel="icon" type="image/webp" href="img/favicon.webp">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -16,16 +17,16 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#0B1E45',
-                            blue: '#1847C7',
-                            lightBlue: '#007AFF',
-                            orange: '#FF9F00',
+                            dark: '#021024',    /* Azul Marinho Profundo */
+                            primary: '#004AAD', /* Azul Royal */
+                            accent: '#7AC142',  /* Verde Lima */
+                            light: '#E0F2F1',   
                             yellow: '#FFD700',
                         }
                     },
                     backgroundImage: {
-                        'hero-pattern': "linear-gradient(to right, #0B1E45, #1847C7)",
-                        'plans-gradient': "linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%)",
+                        'hero-pattern': "linear-gradient(to right, #021024, #004AAD)",
+                        'plans-gradient': "linear-gradient(180deg, #FFFFFF 0%, #F5F9FF 100%)",
                     }
                 }
             }
@@ -39,24 +40,6 @@
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
             color: transparent;
         }
-        .slider-container {
-            scroll-snap-type: x mandatory;
-        }
-        .slide {
-            scroll-snap-align: start;
-        }
-        /* Custom Scrollbar for Plans Section */
-        .plans-scroll::-webkit-scrollbar {
-            height: 4px;
-        }
-        .plans-scroll::-webkit-scrollbar-track {
-            background: #e5e7eb;
-            border-radius: 10px;
-        }
-        .plans-scroll::-webkit-scrollbar-thumb {
-            background: #FF9F00;
-            border-radius: 10px;
-        }
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -64,100 +47,153 @@
             background: #f1f1f1; 
         }
         ::-webkit-scrollbar-thumb {
-            background: #1847C7; 
+            background: #004AAD; 
             border-radius: 4px;
+        }
+        @keyframes pulse-fast {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(122, 193, 66, 0.7); }
+            50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(122, 193, 66, 0); }
+        }
+        .animate-pulse-fast {
+            animation: pulse-fast 1.5s infinite;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        .form-select:focus {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%237AC142' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        }
+        
+        /* Profile Card Hover Effects */
+        .profile-card .profile-content {
+            opacity: 0;
+            max-height: 0; 
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .profile-card:hover .profile-content {
+            opacity: 1;
+            max-height: 250px; 
+            transform: translateY(0);
+            margin-top: 1rem;
+        }
+        .profile-card .profile-overlay {
+            background-color: rgba(2, 16, 36, 0.3);
+            transition: all 0.4s ease-in-out;
+        }
+        .profile-card:hover .profile-overlay {
+            background-color: rgba(2, 16, 36, 0.85);
+        }
+        .profile-title {
+            transition: transform 0.4s ease;
+        }
+        
+        /* Fade transition for tabs */
+        .fade-enter {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden bg-gray-50">
 
     <!-- Top Bar -->
-    <div class="bg-white py-2 hidden md:block border-b border-gray-100">
-        <div class="container mx-auto px-4 flex justify-between items-center text-sm text-brand-dark font-medium">
+    <div class="bg-brand-dark py-2 hidden md:block border-b border-brand-primary/20 relative z-40">
+        <div class="container mx-auto px-4 flex justify-between items-center text-sm text-gray-300 font-medium">
             <div class="flex items-center gap-6">
-                <span><i class="fas fa-headset text-brand-blue mr-2"></i>SAC: (87) 99166-1730</span>
-                <span><i class="fas fa-map-marker-alt text-brand-blue mr-2"></i>Atendemos toda a região</span>
+                <span><i class="fas fa-headset text-brand-accent mr-2"></i>SAC: (87) 99166-1730</span>
+                <span><i class="fas fa-map-marker-alt text-brand-accent mr-2"></i>Atendemos toda a região</span>
             </div>
-            <span class="text-brand-blue font-bold tracking-wider text-xs">REDE É UM BOM DIA PARA NAVEGAR NA INTERNET!</span>
+            <span class="text-brand-accent font-bold tracking-wider text-xs">REDE É UM BOM DIA PARA NAVEGAR NA INTERNET!</span>
         </div>
     </div>
 
     <!-- Header / Navbar -->
-    <header class="bg-brand-dark text-white sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-4 py-3">
+    <header id="main-header" class="fixed z-50 left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out shadow-lg">
+        <div id="header-inner" class="px-6 py-4 md:px-16 md:py-6 transition-all duration-500">
             <div class="flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-wifi text-3xl text-brand-orange"></i>
-                    <div class="leading-tight">
-                        <span class="block text-2xl font-bold italic tracking-tighter">LinkX Telecon</span>
-                        <span class="block text-xs text-gray-300 tracking-widest uppercase">Provedor de Internet</span>
-                    </div>
-                </div>
+                <a href="#" class="block">
+                    <img src="img/logo-horizontal-branca.webp" alt="LinkX Telecom" class="h-16 md:h-24 w-auto object-contain">
+                </a>
 
-                <nav class="hidden lg:flex items-center gap-8 font-medium text-sm">
-                    <a href="#home" class="hover:text-brand-orange transition-colors">Home</a>
-                    <a href="#empresa" class="hover:text-brand-orange transition-colors">Empresa</a>
-                    <a href="#planos" class="hover:text-brand-orange transition-colors">Planos</a>
-                    <a href="#cobertura" class="hover:text-brand-orange transition-colors">Cobertura</a>
-                    <a href="#contato" class="hover:text-brand-orange transition-colors">Fale Conosco</a>
+                <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-white">
+                    <a href="#home" class="hover:text-brand-accent transition-colors">Home</a>
+                    <a href="#empresa" class="hover:text-brand-accent transition-colors">Empresa</a>
+                    <a href="#planos" class="hover:text-brand-accent transition-colors">Planos</a>
+                    <a href="#cobertura" class="hover:text-brand-accent transition-colors">Cobertura</a>
+                    <a href="#contato" class="hover:text-brand-accent transition-colors">Fale Conosco</a>
                 </nav>
 
                 <div class="hidden lg:block">
-                    <a href="#" class="bg-brand-orange hover:bg-orange-600 text-white text-sm font-bold py-2 px-6 rounded-full transition-all shadow-lg transform hover:scale-105">
+                    <a href="#" class="bg-brand-accent hover:bg-green-500 text-white text-sm font-bold py-2 px-6 rounded-full transition-all shadow-lg transform hover:scale-105">
                         CENTRAL DO CLIENTE
                     </a>
                 </div>
 
-                <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white">
+                <button id="mobile-menu-btn" class="lg:hidden text-2xl text-brand-accent hover:text-white transition-colors">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden lg:hidden bg-brand-dark border-t border-blue-900 absolute w-full left-0">
-            <nav class="flex flex-col p-4 gap-4">
-                <a href="#home" class="block hover:text-brand-orange mobile-link">Home</a>
-                <a href="#empresa" class="block hover:text-brand-orange mobile-link">Empresa</a>
-                <a href="#planos" class="block hover:text-brand-orange mobile-link">Planos</a>
-                <a href="#cobertura" class="block hover:text-brand-orange mobile-link">Cobertura</a>
-                <a href="#contato" class="block hover:text-brand-orange mobile-link">Fale Conosco</a>
-                <a href="#" class="block bg-brand-orange text-center py-2 rounded-lg font-bold">CENTRAL DO CLIENTE</a>
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-dark border-t border-brand-primary/30 w-full rounded-b-2xl">
+            <nav class="flex flex-col p-4 gap-4 text-white">
+                <a href="#home" class="block hover:text-brand-accent mobile-link">Home</a>
+                <a href="#empresa" class="block hover:text-brand-accent mobile-link">Empresa</a>
+                <a href="#planos" class="block hover:text-brand-accent mobile-link">Planos</a>
+                <a href="#cobertura" class="block hover:text-brand-accent mobile-link">Cobertura</a>
+                <a href="#contato" class="block hover:text-brand-accent mobile-link">Fale Conosco</a>
+                <a href="#" class="block bg-brand-accent text-white text-center py-2 rounded-lg font-bold">CENTRAL DO CLIENTE</a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Slider -->
-    <section id="home" class="relative h-[600px] md:h-[700px] overflow-hidden bg-brand-dark group touch-pan-y">
+    <section id="home" class="relative h-screen overflow-hidden bg-brand-dark group touch-pan-y">
         <div id="slider" class="h-full w-full relative">
-            <!-- Slide 1 -->
-            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-100 slide-item bg-gradient-to-r from-brand-dark via-brand-blue to-blue-500">
+            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-100 slide-item bg-gradient-to-r from-brand-dark via-brand-primary to-blue-600">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] opacity-20 bg-cover bg-center mix-blend-overlay"></div>
-                
-                <div class="container mx-auto h-full px-4 relative flex items-center">
+                <div class="container mx-auto h-full px-4 relative flex items-center pt-20 md:pt-0">
                     <h1 class="absolute left-0 top-1/2 -translate-y-1/2 text-[150px] md:text-[300px] font-black leading-none text-outline opacity-20 pointer-events-none select-none z-0">
                         VELO<br>CIDA<br>DE
                     </h1>
-                    
                     <div class="grid md:grid-cols-2 gap-8 items-center w-full relative z-10">
-                        <div class="order-2 md:order-1 relative">
-                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Homem usando notebook" class="w-full max-w-lg mx-auto md:ml-0 drop-shadow-2xl rounded-lg transform -rotate-2 border-4 border-white/20">
-                            <div class="absolute -bottom-10 -right-10 bg-brand-orange text-white p-4 rounded-full shadow-xl hidden md:block animate-bounce">
+                        <div class="order-2 md:order-1 relative reveal active">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Homem usando notebook" class="w-full max-w-lg mx-auto md:ml-0 drop-shadow-2xl rounded-lg transform -rotate-2 border-4 border-brand-accent/30">
+                            <div class="absolute -bottom-10 -right-10 bg-brand-accent text-white p-4 rounded-full shadow-xl hidden md:block animate-bounce">
                                 <i class="fas fa-rocket text-4xl"></i>
                             </div>
                         </div>
-                        
-                        <div class="order-1 md:order-2 text-white text-center md:text-right">
+                        <div class="order-1 md:order-2 text-white text-center md:text-right reveal active" style="transition-delay: 200ms;">
                             <h2 class="text-3xl md:text-5xl font-bold uppercase leading-tight mb-2">
                                 Internet em <br>
-                                <span class="text-brand-yellow text-4xl md:text-6xl">Ultra Velocidade</span>
+                                <span class="text-brand-accent text-4xl md:text-6xl">Ultra Velocidade</span>
                             </h2>
                             <div class="inline-block bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 mt-4">
                                 <p class="text-sm font-semibold uppercase tracking-widest mb-1">Planos a partir de</p>
                                 <div class="flex items-end justify-center md:justify-end gap-1 leading-none">
                                     <span class="text-2xl font-bold">R$</span>
-                                    <span class="text-7xl md:text-8xl font-black text-brand-orange">69</span>
+                                    <span class="text-7xl md:text-8xl font-black text-brand-accent">69</span>
                                     <div class="text-left">
-                                        <span class="block text-3xl font-bold text-brand-orange">,90</span>
+                                        <span class="block text-3xl font-bold text-brand-accent">,90</span>
                                         <span class="block text-sm">Mês</span>
                                     </div>
                                 </div>
@@ -166,396 +202,435 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Slide 2 -->
             <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item bg-brand-dark">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] opacity-40 bg-cover bg-center"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
-                
-                <div class="container mx-auto h-full px-4 relative flex items-center justify-center z-10">
+                <div class="container mx-auto h-full px-4 relative flex items-center justify-center z-10 pt-20 md:pt-0">
                     <div class="text-center text-white max-w-4xl">
                         <h2 class="text-4xl md:text-6xl font-black uppercase mb-6 drop-shadow-lg">
                             Curta o máximo de suas<br>
-                            <span class="text-brand-orange">Redes Sociais</span>
+                            <span class="text-brand-accent">Redes Sociais</span>
                         </h2>
                         <div class="flex justify-center gap-6 text-5xl md:text-7xl mt-8">
-                            <i class="fab fa-instagram hover:text-pink-500 transition-colors cursor-pointer"></i>
-                            <i class="fab fa-youtube hover:text-red-600 transition-colors cursor-pointer"></i>
-                            <i class="fab fa-facebook hover:text-blue-600 transition-colors cursor-pointer"></i>
-                            <i class="fab fa-tiktok hover:text-black transition-colors cursor-pointer bg-white rounded-lg p-1 text-4xl h-fit self-center"></i>
+                            <a href="#" class="hover:text-pink-500 transition-colors transform hover:scale-110 duration-300"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="hover:text-red-600 transition-colors transform hover:scale-110 duration-300"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="hover:text-blue-600 transition-colors transform hover:scale-110 duration-300"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="hover:text-black transition-colors transform hover:scale-110 duration-300 bg-white rounded-lg p-1 text-4xl h-fit self-center flex items-center"><i class="fab fa-tiktok"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Navigation Arrows (Hidden on Mobile) -->
-        <button onclick="prevSlide()" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-orange text-white p-4 rounded-full backdrop-blur-sm transition-all">
-            <i class="fas fa-chevron-left text-xl"></i>
-        </button>
-        <button onclick="nextSlide()" class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-orange text-white p-4 rounded-full backdrop-blur-sm transition-all">
-            <i class="fas fa-chevron-right text-xl"></i>
-        </button>
-
-        <!-- Navigation Dots (Visible only on Mobile via flex, centered bottom) -->
-        <div class="md:hidden absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2" id="slider-dots">
-            <!-- Dots inserted via JS -->
-        </div>
+        <button onclick="prevSlide()" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all"><i class="fas fa-chevron-left text-xl"></i></button>
+        <button onclick="nextSlide()" class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all"><i class="fas fa-chevron-right text-xl"></i></button>
+        <div class="md:hidden absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2" id="slider-dots"></div>
     </section>
 
     <!-- Floating Action Bar -->
-    <section class="bg-brand-blue py-8 relative z-20 shadow-2xl -mt-1">
+    <section class="bg-brand-primary py-8 relative z-20 shadow-2xl -mt-1 reveal">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 <div class="text-white text-center lg:text-left flex-1">
                     <h3 class="text-2xl font-black uppercase italic">Estamos online para atender você!</h3>
                 </div>
-                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full lg:w-auto">
-                    <a href="#" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-blue-800 shadow-lg group">
-                        <div class="bg-brand-orange p-3 rounded-lg text-white group-hover:scale-110 transition-transform">
-                            <i class="fas fa-barcode text-2xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-yellow-400 text-xs font-bold uppercase">Acesse agora mesmo</p>
-                            <p class="text-white font-bold leading-tight">Sua 2ª via do boleto</p>
-                        </div>
+                    <a href="#" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group">
+                        <div class="bg-brand-accent p-3 rounded-lg text-brand-dark group-hover:scale-110 transition-transform"><i class="fas fa-barcode text-2xl"></i></div>
+                        <div><p class="text-brand-accent text-xs font-bold uppercase">Acesse agora mesmo</p><p class="text-white font-bold leading-tight">Sua 2ª via do boleto</p></div>
                     </a>
-
-                    <a href="#" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-blue-800 shadow-lg group">
-                        <div class="bg-brand-orange p-3 rounded-lg text-white group-hover:scale-110 transition-transform">
-                            <i class="fas fa-headset text-2xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-yellow-400 text-xs font-bold uppercase">Contate nosso</p>
-                            <p class="text-white font-bold leading-tight">Suporte Técnico</p>
-                        </div>
+                    <a href="#" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group">
+                        <div class="bg-brand-accent p-3 rounded-lg text-brand-dark group-hover:scale-110 transition-transform"><i class="fas fa-headset text-2xl"></i></div>
+                        <div><p class="text-brand-accent text-xs font-bold uppercase">Contate nosso</p><p class="text-white font-bold leading-tight">Suporte Técnico</p></div>
                     </a>
-
-                    <a href="#" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-blue-800 shadow-lg group">
-                        <div class="bg-green-500 p-3 rounded-lg text-white group-hover:scale-110 transition-transform">
-                            <i class="fab fa-whatsapp text-2xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-yellow-400 text-xs font-bold uppercase">Compre seu plano</p>
-                            <p class="text-white font-bold leading-tight">Pelo WhatsApp!</p>
-                        </div>
+                    <a href="#" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group">
+                        <div class="bg-green-500 p-3 rounded-lg text-white group-hover:scale-110 transition-transform"><i class="fab fa-whatsapp text-2xl"></i></div>
+                        <div><p class="text-brand-accent text-xs font-bold uppercase">Compre seu plano</p><p class="text-white font-bold leading-tight">Pelo WhatsApp!</p></div>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Plans Section -->
-    <section id="planos" class="py-20 bg-gray-100">
+    <!-- Plans Section (Simple Grid) -->
+    <section id="planos" class="py-20 bg-gray-100 reveal">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-black text-brand-dark uppercase">Planos de Internet</h2>
                 <p class="text-xl text-gray-600 mt-2 font-light">Conheça nossos planos e escolha o ideal para você</p>
-                <div class="w-24 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+                <div class="w-24 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <!-- Mobile: Scroll Snap Container / Desktop: Grid -->
-            <div class="flex md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto overflow-x-auto snap-x snap-mandatory pb-8 plans-scroll md:overflow-visible md:pb-0">
-                
-                <!-- Plan 1 -->
-                <div class="min-w-[85vw] md:min-w-0 snap-center bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 flex flex-col">
-                    <div class="bg-brand-blue py-6 text-center relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
-                        <h3 class="text-4xl font-black text-white italic">300 <span class="text-2xl">MEGA</span></h3>
-                    </div>
-                    <div class="p-8 text-center bg-brand-dark">
-                        <div class="flex justify-center items-end gap-1 text-white">
-                            <span class="text-lg mb-4 opacity-70">R$</span>
-                            <span class="text-6xl font-black text-brand-orange">69</span>
-                            <div class="text-left mb-2">
-                                <span class="block text-2xl font-bold text-brand-orange">,99</span>
-                                <span class="block text-xs opacity-70">/mês</span>
+            <!-- Wrapper Window for Slider -->
+            <div class="relative max-w-6xl mx-auto overflow-hidden md:overflow-visible">
+                <!-- Standard Grid/Slider -->
+                <div id="plans-track" class="flex transition-transform duration-500 ease-out md:grid md:grid-cols-3 md:gap-8 md:transform-none">
+                    
+                    <!-- Plan 1 -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-auto flex-shrink-0 flex flex-col">
+                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
+                                <h3 class="text-4xl font-black text-white italic">300 <span class="text-2xl">MEGA</span></h3>
+                            </div>
+                            <div class="p-8 text-center bg-brand-dark">
+                                <div class="flex justify-center items-end gap-1 text-white">
+                                    <span class="text-lg mb-4 opacity-70">R$</span>
+                                    <span class="text-6xl font-black text-brand-accent">69</span>
+                                    <div class="text-left mb-2">
+                                        <span class="block text-2xl font-bold text-brand-accent">,99</span>
+                                        <span class="block text-xs opacity-70">/mês</span>
+                                    </div>
+                                </div>
+                                <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
+                            </div>
+                            <div class="p-8 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-4 text-gray-700 text-sm font-medium mb-8">
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Fibra Óptica de ponta a ponta</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Wi-Fi 5G Grátis</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Suporte Técnico Especializado</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Instalação Grátis</li>
+                                    <li class="flex items-center gap-3 text-gray-400"><i class="fas fa-info-circle"></i> Consulte fidelidade</li>
+                                </ul>
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20300%20MEGA" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                    Eu Quero
+                                </a>
                             </div>
                         </div>
-                        <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
                     </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <ul class="space-y-4 text-gray-700 text-sm font-medium mb-8">
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Fibra Óptica de ponta a ponta</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Wi-Fi 5G Grátis</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Suporte Técnico Especializado</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Instalação Grátis</li>
-                            <li class="flex items-center gap-3 text-gray-400"><i class="fas fa-info-circle"></i> Consulte fidelidade</li>
-                        </ul>
-                        <a href="#" class="block w-full bg-brand-orange hover:bg-orange-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
-                            Eu Quero
-                        </a>
+
+                    <!-- Plan 2 -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-auto flex-shrink-0 flex flex-col">
+                        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden md:-translate-y-4 border-2 border-brand-accent relative h-full flex flex-col">
+                            <div class="absolute top-4 right-4 bg-brand-accent text-brand-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Mais Vendido</div>
+                            <div class="bg-brand-dark py-8 text-center relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
+                                <h3 class="text-5xl font-black text-white italic">500 <span class="text-3xl">MEGA</span></h3>
+                            </div>
+                            <div class="p-8 text-center bg-brand-primary">
+                                <div class="flex justify-center items-end gap-1 text-white">
+                                    <span class="text-lg mb-4 opacity-70">R$</span>
+                                    <span class="text-7xl font-black text-brand-accent">89</span>
+                                    <div class="text-left mb-2">
+                                        <span class="block text-3xl font-bold text-brand-accent">,99</span>
+                                        <span class="block text-xs opacity-70">/mês</span>
+                                    </div>
+                                </div>
+                                <p class="text-white/80 text-sm mt-2">Internet Fibra Óptica</p>
+                            </div>
+                            <div class="p-8 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-4 text-gray-700 text-sm font-bold mb-8">
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Fibra Óptica 100%</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Wi-Fi 6 (Alta Performance)</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Suporte Prioritário</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Apps de Conteúdo Inclusos</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-primary"></i> Instalação Grátis</li>
+                                </ul>
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20500%20MEGA" target="_blank" class="block w-full bg-brand-primary hover:bg-blue-800 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase animate-pulse">
+                                    Eu Quero
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Plan 3 -->
+                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-auto flex-shrink-0 flex flex-col">
+                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
+                                <h3 class="text-4xl font-black text-white italic">700 <span class="text-2xl">MEGA</span></h3>
+                            </div>
+                            <div class="p-8 text-center bg-brand-dark">
+                                <div class="flex justify-center items-end gap-1 text-white">
+                                    <span class="text-lg mb-4 opacity-70">R$</span>
+                                    <span class="text-6xl font-black text-brand-accent">99</span>
+                                    <div class="text-left mb-2">
+                                        <span class="block text-2xl font-bold text-brand-accent">,99</span>
+                                        <span class="block text-xs opacity-70">/mês</span>
+                                    </div>
+                                </div>
+                                <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
+                            </div>
+                            <div class="p-8 flex-1 flex flex-col justify-between">
+                                <ul class="space-y-4 text-gray-700 text-sm font-medium mb-8">
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Ideal para Gamers</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Upload Turbinado</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> IP Fixo (Opcional)</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-check text-brand-accent"></i> Suporte Premium</li>
+                                    <li class="flex items-center gap-3 text-gray-400"><i class="fas fa-info-circle"></i> Consulte fidelidade</li>
+                                </ul>
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20700%20MEGA" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                    Eu Quero
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Plan 2 (Featured) -->
-                <div class="min-w-[85vw] md:min-w-0 snap-center bg-white rounded-3xl shadow-2xl overflow-hidden transform md:-translate-y-4 border-2 border-brand-orange relative flex flex-col">
-                    <div class="absolute top-4 right-4 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Mais Vendido</div>
-                    <div class="bg-brand-dark py-8 text-center relative overflow-hidden">
-                         <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
-                        <h3 class="text-5xl font-black text-white italic">500 <span class="text-3xl">MEGA</span></h3>
-                    </div>
-                    <div class="p-8 text-center bg-brand-blue">
-                        <div class="flex justify-center items-end gap-1 text-white">
-                            <span class="text-lg mb-4 opacity-70">R$</span>
-                            <span class="text-7xl font-black text-brand-yellow">89</span>
-                            <div class="text-left mb-2">
-                                <span class="block text-3xl font-bold text-brand-yellow">,99</span>
-                                <span class="block text-xs opacity-70">/mês</span>
-                            </div>
-                        </div>
-                        <p class="text-white/80 text-sm mt-2">Internet Fibra Óptica</p>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <ul class="space-y-4 text-gray-700 text-sm font-bold mb-8">
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-blue"></i> Fibra Óptica 100%</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-blue"></i> Wi-Fi 6 (Alta Performance)</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-blue"></i> Suporte Prioritário</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-blue"></i> Apps de Conteúdo Inclusos</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-brand-blue"></i> Instalação Grátis</li>
-                        </ul>
-                        <a href="#" class="block w-full bg-brand-blue hover:bg-blue-800 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase animate-pulse">
-                            Eu Quero
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Plan 3 -->
-                <div class="min-w-[85vw] md:min-w-0 snap-center bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 flex flex-col">
-                    <div class="bg-brand-blue py-6 text-center relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
-                        <h3 class="text-4xl font-black text-white italic">700 <span class="text-2xl">MEGA</span></h3>
-                    </div>
-                    <div class="p-8 text-center bg-brand-dark">
-                        <div class="flex justify-center items-end gap-1 text-white">
-                            <span class="text-lg mb-4 opacity-70">R$</span>
-                            <span class="text-6xl font-black text-brand-orange">99</span>
-                            <div class="text-left mb-2">
-                                <span class="block text-2xl font-bold text-brand-orange">,99</span>
-                                <span class="block text-xs opacity-70">/mês</span>
-                            </div>
-                        </div>
-                        <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <ul class="space-y-4 text-gray-700 text-sm font-medium mb-8">
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Ideal para Gamers</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Upload Turbinado</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> IP Fixo (Opcional)</li>
-                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Suporte Premium</li>
-                            <li class="flex items-center gap-3 text-gray-400"><i class="fas fa-info-circle"></i> Consulte fidelidade</li>
-                        </ul>
-                        <a href="#" class="block w-full bg-brand-orange hover:bg-orange-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
-                            Eu Quero
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Mobile Plans Indicator Hint -->
-            <div class="md:hidden flex justify-center mt-4 gap-2 text-brand-blue/30 text-xs">
-                <i class="fas fa-chevron-left animate-pulse"></i>
-                <span>Arraste para ver mais</span>
-                <i class="fas fa-chevron-right animate-pulse"></i>
+                <!-- Plans Dots Navigation (Mobile Only) -->
+                <div class="md:hidden flex justify-center mt-6 gap-2" id="plans-dots"></div>
             </div>
         </div>
     </section>
 
     <!-- Coverage Banner -->
-    <section id="cobertura" class="bg-brand-blue py-16 relative overflow-hidden">
+    <section id="cobertura" class="bg-brand-primary py-16 relative overflow-hidden reveal">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80')] bg-cover bg-center opacity-20 mix-blend-multiply"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-blue/90 to-transparent"></div>
-        
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-primary via-brand-primary/90 to-transparent"></div>
         <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between">
             <div class="mb-8 md:mb-0 max-w-2xl">
                 <h2 class="text-3xl md:text-5xl font-black text-white uppercase italic mb-4">Área de Cobertura</h2>
                 <p class="text-white/90 text-lg mb-8">Verifique agora mesmo se nossa fibra óptica ultra-rápida já está disponível na sua rua.</p>
-                <a href="#" class="inline-block bg-brand-orange text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-brand-orange transition-all uppercase">
+                <a href="#" class="inline-block bg-brand-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-brand-accent transition-all uppercase">
                     Consultar Viabilidade
                 </a>
             </div>
-            <div class="hidden md:block">
-                <i class="fas fa-map-marked-alt text-9xl text-white/20"></i>
-            </div>
+            <div class="hidden md:block"><i class="fas fa-map-marked-alt text-9xl text-white/20"></i></div>
         </div>
     </section>
 
-    <!-- Profiles Section (Used as 'Empresa' anchor) -->
-    <section id="empresa" class="py-20 bg-white">
+    <!-- PROFILES SECTION (EMPRESA) - MODIFIED WITH TABS -->
+    <section id="empresa" class="py-20 bg-white reveal">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-black text-brand-blue uppercase">Aqui você tem muito mais</h2>
+                <h2 class="text-3xl md:text-4xl font-black text-brand-primary uppercase">Aqui você tem muito mais</h2>
                 <p class="text-gray-500">Qual seu perfil de velocidade?</p>
+                
+                <!-- Profile Tabs -->
+                <div class="flex flex-col sm:flex-row justify-center mt-8 gap-4">
+                    <button onclick="switchProfileTab('residential')" id="btn-profile-residential" class="px-8 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all bg-brand-accent text-white shadow-lg transform scale-105">
+                        <i class="fas fa-home mr-2"></i> Para Você
+                    </button>
+                    <button onclick="switchProfileTab('business')" id="btn-profile-business" class="px-8 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all bg-white text-gray-500 hover:text-brand-primary border border-gray-200 hover:border-brand-primary">
+                        <i class="fas fa-building mr-2"></i> Para Empresas
+                    </button>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group cursor-pointer">
-                    <div class="rounded-2xl overflow-hidden h-64 relative mb-4 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Home Office" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                            <h3 class="text-white font-bold text-xl uppercase">Home Office</h3>
+            <!-- Profiles Content Wrapper -->
+            <div class="min-h-[400px]">
+                
+                <!-- Residential Profiles -->
+                <div id="profile-residential" class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-enter">
+                    <!-- Card 1 -->
+                    <div class="profile-card group relative rounded-3xl overflow-hidden h-[550px] shadow-xl cursor-pointer">
+                        <img src="img/residencial-home-office.webp" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="profile-overlay absolute inset-0 flex flex-col justify-end p-8 pb-12">
+                            <h3 class="profile-title text-white font-black text-3xl uppercase mb-4">Home Office</h3>
+                            <div class="profile-content">
+                                <p class="text-gray-200 text-sm mb-6">Estabilidade total para suas videoconferências e envio de arquivos pesados sem interrupções.</p>
+                                <a href="#planos" class="inline-block bg-brand-accent text-white font-bold py-2 px-6 rounded-full text-sm uppercase hover:bg-white hover:text-brand-accent transition-colors">Ver Planos</a>
+                            </div>
                         </div>
                     </div>
-                    <h4 class="font-bold text-brand-dark text-lg">Trabalha em casa?</h4>
-                    <p class="text-gray-500 text-sm">Estabilidade para suas reuniões e envio de arquivos pesados.</p>
+                    <!-- Card 2 -->
+                    <div class="profile-card group relative rounded-3xl overflow-hidden h-[550px] shadow-xl cursor-pointer">
+                        <img src="img/residencial-streaming.webp" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="profile-overlay absolute inset-0 flex flex-col justify-end p-8 pb-12">
+                            <h3 class="profile-title text-white font-black text-3xl uppercase mb-4">Streaming</h3>
+                            <div class="profile-content">
+                                <p class="text-gray-200 text-sm mb-6">Assista filmes e séries em 4K sem travamentos. A melhor experiência para maratonar.</p>
+                                <a href="#planos" class="inline-block bg-brand-accent text-white font-bold py-2 px-6 rounded-full text-sm uppercase hover:bg-white hover:text-brand-accent transition-colors">Ver Planos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="profile-card group relative rounded-3xl overflow-hidden h-[550px] shadow-xl cursor-pointer">
+                        <img src="img/residencial-game.webp" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="profile-overlay absolute inset-0 flex flex-col justify-end p-8 pb-12">
+                            <h3 class="profile-title text-white font-black text-3xl uppercase mb-4">Gamer</h3>
+                            <div class="profile-content">
+                                <p class="text-gray-200 text-sm mb-6">Ping baixíssimo e rota otimizada para você liderar o ranking sem lag.</p>
+                                <a href="#planos" class="inline-block bg-brand-accent text-white font-bold py-2 px-6 rounded-full text-sm uppercase hover:bg-white hover:text-brand-accent transition-colors">Ver Planos</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="group cursor-pointer">
-                    <div class="rounded-2xl overflow-hidden h-64 relative mb-4 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1522869635100-39e344663d92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Streaming" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                            <h3 class="text-white font-bold text-xl uppercase">Streaming</h3>
+                <!-- Business Profiles (Hidden Initially) -->
+                <div id="profile-business" class="hidden grid-cols-1 md:grid-cols-3 gap-8 fade-enter">
+                    <!-- Card 1 -->
+                    <div class="profile-card group relative rounded-3xl overflow-hidden h-[550px] shadow-xl cursor-pointer">
+                        <img src="img/empresarial-pequena-empresa.webp" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="profile-overlay absolute inset-0 flex flex-col justify-end p-8 pb-12">
+                            <h3 class="profile-title text-white font-black text-3xl uppercase mb-4">Pequenos Negócios</h3>
+                            <div class="profile-content">
+                                <p class="text-gray-200 text-sm mb-6">Conexão robusta para manter seu escritório, loja ou consultório sempre online.</p>
+                                <a href="#contato" class="inline-block bg-brand-accent text-white font-bold py-2 px-6 rounded-full text-sm uppercase hover:bg-white hover:text-brand-accent transition-colors">Fale com Consultor</a>
+                            </div>
                         </div>
                     </div>
-                    <h4 class="font-bold text-brand-dark text-lg">Assiste filmes e séries?</h4>
-                    <p class="text-gray-500 text-sm">4K sem travamentos para você maratonar à vontade.</p>
-                    <div class="flex gap-2 mt-2">
-                        <i class="fab fa-youtube text-red-600 text-xl"></i>
-                        <span class="font-bold text-red-600">Netflix</span>
+                    <!-- Card 2 -->
+                    <div class="profile-card group relative rounded-3xl overflow-hidden h-[550px] shadow-xl cursor-pointer">
+                        <img src="img/empresarial-link-dedicado.webp" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="profile-overlay absolute inset-0 flex flex-col justify-end p-8 pb-12">
+                            <h3 class="profile-title text-white font-black text-3xl uppercase mb-4">Link Dedicado</h3>
+                            <div class="profile-content">
+                                <p class="text-gray-200 text-sm mb-6">Garantia de banda 100% simétrica, IP fixo e SLA diferenciado para operações críticas.</p>
+                                <a href="#contato" class="inline-block bg-brand-accent text-white font-bold py-2 px-6 rounded-full text-sm uppercase hover:bg-white hover:text-brand-accent transition-colors">Fale com Consultor</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="profile-card group relative rounded-3xl overflow-hidden h-[550px] shadow-xl cursor-pointer">
+                        <img src="img/empresarial-eventos-wifi.webp" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="profile-overlay absolute inset-0 flex flex-col justify-end p-8 pb-12">
+                            <h3 class="profile-title text-white font-black text-3xl uppercase mb-4">Eventos & Wi-Fi</h3>
+                            <div class="profile-content">
+                                <p class="text-gray-200 text-sm mb-6">Soluções de alta densidade para eventos, hotéis e grandes espaços públicos.</p>
+                                <a href="#contato" class="inline-block bg-brand-accent text-white font-bold py-2 px-6 rounded-full text-sm uppercase hover:bg-white hover:text-brand-accent transition-colors">Fale com Consultor</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group cursor-pointer">
-                    <div class="rounded-2xl overflow-hidden h-64 relative mb-4 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Gamer" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                            <h3 class="text-white font-bold text-xl uppercase">Gamer</h3>
-                        </div>
-                    </div>
-                    <h4 class="font-bold text-brand-dark text-lg">Joga Bastante?</h4>
-                    <p class="text-gray-500 text-sm">Ping baixíssimo para você liderar o ranking.</p>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- App Section -->
-    <section class="bg-brand-blue py-16 clip-slant mb-20">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+    <!-- Removed bg-brand-primary and clip-slant from parent section to prevent content clipping -->
+    <section class="relative py-8 md:py-10 mb-20 reveal">
+        <!-- Background Layer with Clip Path -->
+        <div class="absolute inset-0 bg-brand-primary clip-slant z-0 h-full w-full"></div>
+
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12 relative z-10">
             <div class="flex-1 text-white">
                 <h2 class="text-4xl font-black uppercase mb-4">Baixe Nosso App</h2>
                 <p class="mb-8 text-white/80 max-w-lg">Gerencie com mais facilidade sua assinatura, retire 2ª via, desbloqueie sua conexão e fale com o suporte. Baixe agora mesmo nosso APP.</p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <button class="flex items-center gap-3 bg-black/30 hover:bg-black/50 border border-white/30 px-6 py-3 rounded-lg transition-all">
+                    <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center gap-3 bg-black/30 hover:bg-black/50 border border-white/30 px-6 py-3 rounded-lg transition-all cursor-pointer">
                         <i class="fab fa-apple text-3xl"></i>
-                        <div class="text-left leading-tight">
-                            <span class="text-xs block">Download na</span>
-                            <span class="font-bold">App Store</span>
-                        </div>
-                    </button>
-                    <button class="flex items-center gap-3 bg-black/30 hover:bg-black/50 border border-white/30 px-6 py-3 rounded-lg transition-all">
+                        <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.r3r.linkx" target="_blank" class="flex items-center gap-3 bg-black/30 hover:bg-black/50 border border-white/30 px-6 py-3 rounded-lg transition-all cursor-pointer">
                         <i class="fab fa-google-play text-2xl"></i>
-                        <div class="text-left leading-tight">
-                            <span class="text-xs block">Disponível no</span>
-                            <span class="font-bold">Google Play</span>
-                        </div>
-                    </button>
+                        <div class="text-left leading-tight"><span class="text-xs block">Disponível no</span><span class="font-bold">Google Play</span></div>
+                    </a>
                 </div>
             </div>
             <div class="flex-1 flex justify-center relative">
                 <!-- Phone Mockup Image -->
-                <div class="relative w-[280px] md:w-[320px] transform rotate-6 hover:rotate-0 transition-transform duration-500">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="App Mobile" 
-                         class="w-full h-auto rounded-[2.5rem] shadow-2xl border-8 border-gray-800">
-                    <!-- Floating Badge -->
+                <div class="relative w-[280px] md:w-[320px] transform rotate-6 hover:rotate-0 transition-transform duration-500 md:-my-16">
+                    <img src="img/apk-img-link-x.webp" alt="App Mobile" class="w-full h-auto rounded-[2.5rem] shadow-2xl border-8 border-gray-800">
+                     <!-- Floating Badge -->
                      <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-lg flex items-center gap-3 animate-bounce">
-                        <div class="bg-green-500 rounded-full p-2 text-white">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-500 font-bold uppercase">Status</p>
-                            <p class="text-sm font-black text-brand-dark">Conectado</p>
-                        </div>
+                        <div class="bg-green-500 rounded-full p-2 text-white"><i class="fas fa-check"></i></div>
+                        <div><p class="text-xs text-gray-500 font-bold uppercase">Status</p><p class="text-sm font-black text-brand-dark">Conectado</p></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contato" class="py-20 reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-black text-brand-primary uppercase">Fale Conosco</h2>
+                <p class="text-gray-500 text-lg">Estamos prontos para te atender.</p>
+                <div class="w-24 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="max-w-2xl mx-auto bg-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="nome" class="block text-sm font-bold text-gray-700 mb-2">Nome Completo</label>
+                        <input type="text" id="nome" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/50 outline-none transition-all" placeholder="Seu nome" required>
+                    </div>
+                    <div>
+                        <label for="assunto" class="block text-sm font-bold text-gray-700 mb-2">Assunto</label>
+                        <select id="assunto" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/50 outline-none transition-all bg-white form-select" required>
+                            <option value="" disabled selected>Selecione um assunto</option>
+                            <option value="Planos e Vendas">Planos e Vendas</option>
+                            <option value="Suporte Técnico">Suporte Técnico</option>
+                            <option value="Financeiro">Financeiro</option>
+                            <option value="Ouvidoria">Ouvidoria</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="mensagem" class="block text-sm font-bold text-gray-700 mb-2">Mensagem</label>
+                        <textarea id="mensagem" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/50 outline-none transition-all resize-none" placeholder="Como podemos ajudar?" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-accent hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-2xl"></i> <span>Enviar Mensagem no WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer id="contato" class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-4 border-brand-orange">
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-4 border-brand-accent">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <div class="flex items-center gap-2 mb-6">
-                        <i class="fas fa-wifi text-2xl text-brand-orange"></i>
-                        <div class="leading-tight">
-                            <span class="block text-xl font-bold italic text-white">LinkX Telecon</span>
-                            <span class="block text-xs text-gray-500 tracking-widest uppercase">Provedor de Internet</span>
-                        </div>
-                    </div>
+                    <div class="mb-6"><img src="img/logo-horizontal-branca.webp" alt="LinkX Telecom" class="h-20 w-auto mb-4 object-contain"></div>
                     <p class="text-sm mb-4">Levando a melhor conexão até você com tecnologia de ponta e suporte humanizado.</p>
                 </div>
-                
                 <div>
-                    <h4 class="text-white font-bold uppercase mb-4 border-l-4 border-brand-orange pl-2">Links Rápidos</h4>
+                    <h4 class="text-white font-bold uppercase mb-4 border-l-4 border-brand-accent pl-2">Links Rápidos</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#home" class="hover:text-brand-orange transition-colors">Home</a></li>
-                        <li><a href="#empresa" class="hover:text-brand-orange transition-colors">Empresa</a></li>
-                        <li><a href="#planos" class="hover:text-brand-orange transition-colors">Planos</a></li>
-                        <li><a href="#contato" class="hover:text-brand-orange transition-colors">Fale Conosco</a></li>
+                        <li><a href="#home" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="#empresa" class="hover:text-brand-accent transition-colors">Empresa</a></li>
+                        <li><a href="#planos" class="hover:text-brand-accent transition-colors">Planos</a></li>
+                        <li><a href="#contato" class="hover:text-brand-accent transition-colors">Fale Conosco</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold uppercase mb-4 border-l-4 border-brand-orange pl-2">Para Empresas</h4>
+                    <h4 class="text-white font-bold uppercase mb-4 border-l-4 border-brand-accent pl-2">Para Empresas</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Link Dedicado</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Lan to Lan</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Wi-Fi Marketing</a></li>
+                        <li><a href="#contato" class="hover:text-brand-accent transition-colors">Pequenos Negócios</a></li>
+                        <li><a href="#contato" class="hover:text-brand-accent transition-colors">Link Dedicado</a></li>
+                        <li><a href="#contato" class="hover:text-brand-accent transition-colors">Eventos & Wi-Fi</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold uppercase mb-4 border-l-4 border-brand-orange pl-2">Contato</h4>
+                    <h4 class="text-white font-bold uppercase mb-4 border-l-4 border-brand-accent pl-2">Contato</h4>
                     <ul class="space-y-4 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-map-marker-alt text-brand-orange mt-1"></i>
-                            <span>Rua Exemplo, 123 - Centro<br>Cidade - PB</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-phone-alt text-brand-orange"></i>
-                            <span>(99) 99999-9999</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-envelope text-brand-orange"></i>
-                            <span>contato@exemplo.com</span>
-                        </li>
+                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand-accent mt-1"></i><span>R. Leonardo Costa Vasconcelos, 1-51 - Malvinas, Campina Grande - PB, 58433-269</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand-accent"></i><span>(83) 99636-7286</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand-accent"></i><span>contato@exemplo.com</span></li>
                     </ul>
                 </div>
             </div>
-
-            <div class="border-t border-gray-800 pt-8 text-center text-sm">
-                <p>&copy; 2026 LinkX Telecon. Todos os direitos reservados.</p>
-            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm"><p>&copy; 2026 LinkX Telecon. Todos os direitos reservados.</p></div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp -->
-    <a href="#" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition-transform hover:scale-110 flex items-center justify-center w-14 h-14 animate-bounce">
+    <a href="https://wa.me/5583996367286" target="_blank" class="fixed bottom-6 right-6 bg-brand-accent hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition-transform hover:scale-110 flex items-center justify-center w-14 h-14 animate-pulse-fast">
         <i class="fab fa-whatsapp text-3xl"></i>
     </a>
 
     <script>
-        // Mobile Menu Logic
+        // Header Logic
+        const header = document.getElementById('main-header');
+        const headerInner = document.getElementById('header-inner');
+        function updateHeader() {
+            if (window.scrollY > 10) {
+                header.classList.remove('top-4', 'md:top-10', 'w-[95%]', 'md:w-[90%]', 'max-w-7xl', 'rounded-2xl', 'md:rounded-full', 'bg-brand-dark/95', 'backdrop-blur-md', 'border', 'border-white/10');
+                header.classList.add('top-0', 'w-full', 'max-w-full', 'rounded-none', 'bg-brand-dark', 'border-b', 'border-brand-primary/30');
+                headerInner.classList.remove('md:px-16', 'md:py-6');
+                headerInner.classList.add('md:px-48', 'md:py-4');
+            } else {
+                header.classList.add('top-4', 'md:top-10', 'w-[95%]', 'md:w-[90%]', 'max-w-7xl', 'rounded-2xl', 'md:rounded-full', 'bg-brand-dark/95', 'backdrop-blur-md', 'border', 'border-white/10');
+                header.classList.remove('top-0', 'w-full', 'max-w-full', 'rounded-none', 'bg-brand-dark', 'border-b', 'border-brand-primary/30');
+                headerInner.classList.add('md:px-16', 'md:py-6');
+                headerInner.classList.remove('md:px-48', 'md:py-4');
+            }
+        }
+        window.addEventListener('scroll', updateHeader);
+        updateHeader();
+
+        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when link is clicked
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Slider Logic
+        // Hero Slider
         const slides = document.querySelectorAll('.slide-item');
         const dotsContainer = document.getElementById('slider-dots');
         const sliderElement = document.getElementById('home');
@@ -563,86 +638,132 @@
         const slideInterval = 5000;
         let slideTimer;
 
-        // Initialize Dots
         slides.forEach((_, index) => {
             const dot = document.createElement('button');
-            dot.className = `w-3 h-3 rounded-full transition-all ${index === 0 ? 'bg-brand-orange w-6' : 'bg-white/50'}`;
-            dot.onclick = () => {
-                currentSlide = index;
-                showSlide(currentSlide);
-                resetTimer();
-            };
+            dot.className = `w-3 h-3 rounded-full transition-all ${index === 0 ? 'bg-brand-accent w-6' : 'bg-white/50'}`;
+            dot.onclick = () => { currentSlide = index; showSlide(currentSlide); resetTimer(); };
             dotsContainer.appendChild(dot);
         });
-
         const dots = dotsContainer.querySelectorAll('button');
 
         function updateDots(index) {
             dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.remove('bg-white/50');
-                    dot.classList.add('bg-brand-orange', 'w-6');
-                    dot.classList.remove('w-3');
-                } else {
-                    dot.classList.add('bg-white/50', 'w-3');
-                    dot.classList.remove('bg-brand-orange', 'w-6');
-                }
+                if (i === index) { dot.classList.remove('bg-white/50'); dot.classList.add('bg-brand-accent', 'w-6'); dot.classList.remove('w-3'); }
+                else { dot.classList.add('bg-white/50', 'w-3'); dot.classList.remove('bg-brand-accent', 'w-6'); }
             });
         }
-
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.classList.remove('opacity-0');
-                    slide.classList.add('opacity-100');
-                } else {
-                    slide.classList.remove('opacity-100');
-                    slide.classList.add('opacity-0');
-                }
+                if (i === index) { slide.classList.remove('opacity-0'); slide.classList.add('opacity-100'); }
+                else { slide.classList.remove('opacity-100'); slide.classList.add('opacity-0'); }
             });
             updateDots(index);
         }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function resetTimer() {
-            clearInterval(slideTimer);
-            slideTimer = setInterval(nextSlide, slideInterval);
-        }
-
+        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
+        function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
+        function resetTimer() { clearInterval(slideTimer); slideTimer = setInterval(nextSlide, slideInterval); }
         slideTimer = setInterval(nextSlide, slideInterval);
 
-        // Swipe Functionality
         let touchStartX = 0;
-        let touchEndX = 0;
-
-        sliderElement.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, {passive: true});
-
+        sliderElement.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
         sliderElement.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-            resetTimer();
+            if (e.changedTouches[0].screenX < touchStartX - 50) { nextSlide(); resetTimer(); }
+            if (e.changedTouches[0].screenX > touchStartX + 50) { prevSlide(); resetTimer(); }
         }, {passive: true});
 
-        function handleSwipe() {
-            const threshold = 50;
-            if (touchEndX < touchStartX - threshold) {
-                nextSlide(); // Swipe Left
+        // Plans Slider (Simple Grid Logic)
+        const plansTrack = document.getElementById('plans-track');
+        const plansDotsContainer = document.getElementById('plans-dots');
+        const plansItems = plansTrack.querySelectorAll(':scope > div'); 
+        let currentPlan = 0;
+
+        // Init Plans Dots
+        plansItems.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = `w-3 h-3 rounded-full transition-all border border-brand-primary ${index === 0 ? 'bg-brand-primary w-6' : 'bg-transparent'}`;
+            dot.onclick = () => goToPlan(index);
+            plansDotsContainer.appendChild(dot);
+        });
+
+        function updatePlansDots(index) {
+            const pDots = plansDotsContainer.querySelectorAll('button');
+            pDots.forEach((dot, i) => {
+                if (i === index) { dot.classList.remove('bg-transparent'); dot.classList.add('bg-brand-primary', 'w-6'); dot.classList.remove('w-3'); }
+                else { dot.classList.add('bg-transparent', 'w-3'); dot.classList.remove('bg-brand-primary', 'w-6'); }
+            });
+        }
+
+        function goToPlan(index) {
+            currentPlan = index;
+            if (window.innerWidth < 768) {
+                plansTrack.style.transform = `translateX(-${index * 100}%)`;
             }
-            if (touchEndX > touchStartX + threshold) {
-                prevSlide(); // Swipe Right
+            updatePlansDots(index);
+        }
+
+        let planTouchStartX = 0;
+        plansTrack.addEventListener('touchstart', e => planTouchStartX = e.changedTouches[0].screenX, {passive: true});
+        plansTrack.addEventListener('touchend', e => {
+            if (e.changedTouches[0].screenX < planTouchStartX - 50) { if(currentPlan < plansItems.length-1) goToPlan(currentPlan+1); else goToPlan(0); }
+            if (e.changedTouches[0].screenX > planTouchStartX + 50) { if(currentPlan > 0) goToPlan(currentPlan-1); else goToPlan(plansItems.length-1); }
+        }, {passive: true});
+
+        window.addEventListener('resize', () => {
+            if(window.innerWidth >= 768) plansTrack.style.transform = '';
+            else goToPlan(currentPlan);
+        });
+
+        // --- PROFILE TABS LOGIC ---
+        function switchProfileTab(type) {
+            const residential = document.getElementById('profile-residential');
+            const business = document.getElementById('profile-business');
+            const btnRes = document.getElementById('btn-profile-residential');
+            const btnBus = document.getElementById('btn-profile-business');
+
+            if (type === 'residential') {
+                residential.classList.remove('hidden');
+                residential.classList.add('grid');
+                business.classList.add('hidden');
+                business.classList.remove('grid');
+
+                btnRes.classList.add('bg-brand-accent', 'text-white', 'shadow-lg', 'scale-105');
+                btnRes.classList.remove('bg-white', 'text-gray-500', 'border-gray-200');
+                
+                btnBus.classList.remove('bg-brand-accent', 'text-white', 'shadow-lg', 'scale-105');
+                btnBus.classList.add('bg-white', 'text-gray-500', 'border', 'border-gray-200');
+            } else {
+                business.classList.remove('hidden');
+                business.classList.add('grid');
+                residential.classList.add('hidden');
+                residential.classList.remove('grid');
+
+                btnBus.classList.add('bg-brand-accent', 'text-white', 'shadow-lg', 'scale-105');
+                btnBus.classList.remove('bg-white', 'text-gray-500', 'border-gray-200');
+                
+                btnRes.classList.remove('bg-brand-accent', 'text-white', 'shadow-lg', 'scale-105');
+                btnRes.classList.add('bg-white', 'text-gray-500', 'border', 'border-gray-200');
             }
         }
+
+        // Scroll Reveal
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 150) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // Contact Form
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const assunto = document.getElementById('assunto').value;
+            const mensagem = document.getElementById('mensagem').value;
+            const texto = `Olá, me chamo *${nome}*.\n\nEntro em contato pois gostaria de tratar sobre: *${assunto}*.\n\nSegue minha mensagem:\n${mensagem}`;
+            window.open(`https://wa.me/5583996367286?text=${encodeURIComponent(texto)}`, '_blank');
+        });
     </script>
 </body>
 </html>
