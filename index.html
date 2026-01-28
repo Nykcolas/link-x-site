@@ -173,7 +173,8 @@
         <div id="slider" class="h-full w-full relative">
             
             <!-- Slide 1: Velocidade -->
-            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-100 slide-item">
+            <!-- Added z-20 for active slide and ensured pointer-events-auto -->
+            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-100 slide-item z-20 pointer-events-auto">
                 <div class="absolute inset-0 bg-[url('img/slide-1-velocidade.webp')] bg-cover md:bg-center bg-no-repeat"></div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 
@@ -204,8 +205,8 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Action Button -->
-                                <a href="#planos" class="inline-flex items-center justify-center gap-[1.5vh] bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-[2vh] px-[5vh] rounded-full shadow-2xl transition-all text-[2.2vh] uppercase tracking-wider transform hover:-translate-y-1">
+                                <!-- Action Button - Ensured z-index relative -->
+                                <a href="#planos" class="relative z-30 inline-flex items-center justify-center gap-[1.5vh] bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-[2vh] px-[5vh] rounded-full shadow-2xl transition-all text-[2.2vh] uppercase tracking-wider transform hover:-translate-y-1">
                                     Ver Planos <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -215,7 +216,8 @@
             </div>
 
             <!-- Slide 2: Social -->
-            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item">
+            <!-- Added pointer-events-none and z-0 for inactive initial slides -->
+            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item pointer-events-none z-0">
                 <div class="absolute inset-0 bg-[url('img/slide-2-social-midia.webp')] bg-cover bg-center bg-no-repeat"></div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 
@@ -245,7 +247,7 @@
             </div>
 
             <!-- Slide 3: Gamer -->
-            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item">
+            <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item pointer-events-none z-0">
                 <div class="absolute inset-0 bg-[url('img/slide-3-gaming.webp')] bg-cover bg-center bg-no-repeat"></div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 
@@ -289,8 +291,8 @@
         </div>
         
         <!-- Navigation Arrows -->
-        <button onclick="prevSlide(); resetTimer()" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-left text-xl"></i></button>
-        <button onclick="nextSlide(); resetTimer()" class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-right text-xl"></i></button>
+        <button onclick="prevSlide(); resetTimer()" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-left text-xl"></i></button>
+        <button onclick="nextSlide(); resetTimer()" class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-right text-xl"></i></button>
         
         <div class="md:hidden absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2" id="slider-dots"></div>
     </section>
@@ -438,6 +440,7 @@
                                     <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-primary"></i> Wi-Fi 6 Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-primary"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-primary"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-primary"></i> Instalação Grátis</li>
                                 </ul>
                                 <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Ultra%20(400%20MB)" target="_blank" class="block w-full bg-brand-primary hover:bg-blue-800 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase animate-pulse">
                                     Eu Quero
@@ -475,6 +478,7 @@
                                     <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
                                 </ul>
                                 <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Max%20(500%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
@@ -512,6 +516,7 @@
                                     <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
                                 </ul>
                                 <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Power%20(700%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
@@ -922,8 +927,13 @@
         }
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                if (i === index) { slide.classList.remove('opacity-0'); slide.classList.add('opacity-100'); }
-                else { slide.classList.remove('opacity-100'); slide.classList.add('opacity-0'); }
+                if (i === index) { 
+                    slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0'); 
+                    slide.classList.add('opacity-100', 'z-20'); 
+                } else { 
+                    slide.classList.remove('opacity-100', 'z-20'); 
+                    slide.classList.add('opacity-0', 'pointer-events-none', 'z-0'); 
+                }
             });
             updateDots(index);
         }
