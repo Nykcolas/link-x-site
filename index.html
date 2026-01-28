@@ -17,10 +17,10 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#021024',
-                            primary: '#004AAD',
-                            accent: '#7AC142',
-                            light: '#E0F2F1',
+                            dark: '#021024',    /* Azul Marinho Profundo */
+                            primary: '#004AAD', /* Azul Royal */
+                            accent: '#7AC142',  /* Verde Lima */
+                            light: '#E0F2F1',   
                             yellow: '#FFD700',
                         }
                     },
@@ -57,6 +57,13 @@
         .animate-pulse-fast {
             animation: pulse-fast 1.5s infinite;
         }
+        @keyframes scale-in {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-scale-in {
+            animation: scale-in 0.3s ease-out forwards;
+        }
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -78,6 +85,7 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%237AC142' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
         }
         
+        /* Profile Card Hover Effects */
         .profile-card .profile-content {
             opacity: 0;
             max-height: 0; 
@@ -102,6 +110,7 @@
             transition: transform 0.4s ease;
         }
         
+        /* Fade transition for tabs */
         .fade-enter {
             animation: fadeIn 0.5s ease-out forwards;
         }
@@ -141,9 +150,10 @@
                 </nav>
 
                 <div class="hidden lg:block">
-                    <a href="#" class="bg-brand-accent hover:bg-green-500 text-white text-sm font-bold py-2 px-6 rounded-full transition-all shadow-lg transform hover:scale-105">
+                    <!-- Updated to Button triggering Modal -->
+                    <button onclick="openClientModal()" class="bg-brand-accent hover:bg-green-500 text-white text-sm font-bold py-2 px-6 rounded-full transition-all shadow-lg transform hover:scale-105">
                         CENTRAL DO CLIENTE
-                    </a>
+                    </button>
                 </div>
 
                 <button id="mobile-menu-btn" class="lg:hidden text-2xl text-brand-accent hover:text-white transition-colors">
@@ -159,7 +169,8 @@
                 <a href="#planos" class="block hover:text-brand-accent mobile-link">Planos</a>
                 <a href="#cobertura" class="block hover:text-brand-accent mobile-link">Cobertura</a>
                 <a href="#contato" class="block hover:text-brand-accent mobile-link">Fale Conosco</a>
-                <a href="#" class="block bg-brand-accent text-white text-center py-2 rounded-lg font-bold">CENTRAL DO CLIENTE</a>
+                <!-- Updated to Button triggering Modal -->
+                <button onclick="openClientModal()" class="block w-full bg-brand-accent text-white text-center py-2 rounded-lg font-bold">CENTRAL DO CLIENTE</button>
             </nav>
         </div>
     </header>
@@ -168,24 +179,21 @@
     <section id="home" class="relative h-screen overflow-hidden bg-brand-dark group touch-pan-y">
         <div id="slider" class="h-full w-full relative">
             
-            <!-- Slide 1: Velocidade (Background Image with Glassmorphism Card) -->
+            <!-- Slide 1: Velocidade -->
             <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-100 slide-item">
                 <div class="absolute inset-0 bg-[url('img/slide-1-velocidade.webp')] bg-cover md:bg-center bg-no-repeat"></div>
-                <!-- Dark Overlay for better contrast -->
                 <div class="absolute inset-0 bg-black/40"></div>
                 
                 <div class="container mx-auto h-full px-4 relative flex items-center pt-20 md:pt-0 justify-end">
                     <div class="w-full md:w-1/2 md:flex md:justify-end reveal active">
-                        <!-- Glassmorphism Card -->
                         <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl text-center md:text-right">
                             <h2 class="text-4xl md:text-6xl font-bold uppercase leading-tight mb-4 drop-shadow-2xl text-white">
                                 Internet em <br>
-                                <span class="text-brand-accent text-5xl md:text-7xl italic">Ultra Velocidade</span>
+                                <span class="text-brand-accent text-4xl md:text-7xl italic">Ultra Velocidade</span>
                             </h2>
                             <p class="text-lg text-white font-medium mb-8 max-w-lg ml-auto mr-auto md:mr-0 drop-shadow-md">Conecte-se com o mundo sem limites. Estabilidade, rapidez e a melhor experiência para sua casa.</p>
                             
                             <div class="flex flex-col items-center md:items-end gap-6">
-                                <!-- Price Box -->
                                 <div class="inline-block bg-brand-dark/80 backdrop-blur-md p-6 rounded-2xl border border-brand-accent/50 transform hover:scale-105 transition-transform shadow-2xl">
                                     <p class="text-sm font-bold uppercase tracking-widest mb-1 text-gray-300">Planos a partir de</p>
                                     <div class="flex items-end justify-center md:justify-end gap-1 leading-none text-white">
@@ -197,8 +205,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Action Button -->
                                 <a href="#planos" class="inline-flex items-center justify-center gap-3 bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-4 px-10 rounded-full shadow-2xl transition-all text-xl uppercase tracking-wider transform hover:-translate-y-1">
                                     Ver Planos <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -208,14 +214,13 @@
                 </div>
             </div>
 
-            <!-- Slide 2: Social (Updated with Glassmorphism Card and Background) -->
+            <!-- Slide 2: Social -->
             <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item">
                 <div class="absolute inset-0 bg-[url('img/slide-2-social-midia.webp')] bg-cover bg-center bg-no-repeat"></div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 
                 <div class="container mx-auto h-full px-4 relative flex items-center pt-20 md:pt-0 justify-start">
                     <div class="w-full md:w-1/2 reveal active">
-                         <!-- Glassmorphism Card (Aligned Left) -->
                         <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl text-center md:text-left">
                             <h2 class="text-4xl md:text-6xl font-black uppercase leading-tight mb-6 text-white drop-shadow-2xl">
                                 Curta o máximo de suas<br>
@@ -223,7 +228,6 @@
                             </h2>
                             <p class="text-lg text-white font-medium mb-8 drop-shadow-md">Navegue sem limites, assista vídeos e compartilhe seus momentos sem travar. A conexão perfeita para quem vive online.</p>
                             
-                            <!-- Icons -->
                             <div class="flex justify-center md:justify-start gap-6 text-5xl md:text-6xl">
                                 <a href="#" class="hover:text-pink-500 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg"><i class="fab fa-instagram"></i></a>
                                 <a href="#" class="hover:text-red-600 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg"><i class="fab fa-youtube"></i></a>
@@ -235,14 +239,13 @@
                 </div>
             </div>
 
-            <!-- Slide 3: Gamer (Updated with Glassmorphism Card and Background) -->
+            <!-- Slide 3: Gamer -->
             <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item">
                 <div class="absolute inset-0 bg-[url('img/slide-3-gaming.webp')] bg-cover bg-center bg-no-repeat"></div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 
                 <div class="container mx-auto h-full px-4 relative flex items-center pt-20 md:pt-0 justify-end">
                     <div class="w-full md:w-1/2 md:flex md:justify-end reveal active">
-                        <!-- Glassmorphism Card -->
                         <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl text-center md:text-right">
                             <h2 class="text-4xl md:text-6xl font-black uppercase leading-tight mb-4 drop-shadow-2xl text-white">
                                 Seus Jogos <br>
@@ -251,7 +254,6 @@
                             <p class="text-lg text-white font-medium mb-8 drop-shadow-md">Ping otimizado, rota exclusiva e máxima estabilidade. Domine as partidas com a conexão feita para gamers.</p>
                             
                             <div class="flex flex-col items-center md:items-end gap-6">
-                                <!-- Price Box -->
                                 <div class="inline-block bg-brand-dark/80 backdrop-blur-md p-6 rounded-2xl border border-brand-accent/50 transform hover:scale-105 transition-transform shadow-2xl">
                                     <p class="text-sm font-bold uppercase tracking-widest mb-1 text-gray-300">Planos Gamer a partir de</p>
                                     <div class="flex items-end justify-center md:justify-end gap-1 leading-none text-white">
@@ -263,8 +265,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Action Button -->
                                 <a href="#planos" class="inline-flex items-center justify-center gap-3 bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-4 px-10 rounded-full shadow-2xl transition-all text-xl uppercase tracking-wider transform hover:-translate-y-1">
                                     Ver Planos <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -276,11 +276,9 @@
 
         </div>
         
-        <!-- Navigation Arrows -->
         <button onclick="prevSlide(); resetTimer()" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-left text-xl"></i></button>
         <button onclick="nextSlide(); resetTimer()" class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-right text-xl"></i></button>
         
-        <!-- Dots -->
         <div class="md:hidden absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2" id="slider-dots"></div>
     </section>
 
@@ -292,18 +290,18 @@
                     <h3 class="text-2xl font-black uppercase italic">Estamos online para atender você!</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full lg:w-auto">
-                    <!-- Button 1: 2nd Copy -->
-                    <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20a%202%C2%AA%20via%20do%20meu%20boleto." target="_blank" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group">
+                    <!-- Button 1: 2nd Copy (Now opens modal) -->
+                    <button onclick="openBoletoModal()" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group text-left w-full">
                         <div class="bg-brand-accent p-3 rounded-lg text-brand-dark group-hover:scale-110 transition-transform"><i class="fas fa-barcode text-2xl"></i></div>
                         <div><p class="text-brand-accent text-xs font-bold uppercase">Acesse agora mesmo</p><p class="text-white font-bold leading-tight">Sua 2ª via do boleto</p></div>
-                    </a>
+                    </button>
                     <!-- Button 2: Support -->
-                    <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20estou%20precisando%20de%20suporte%20t%C3%A9cnico." target="_blank" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group">
+                    <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20estou%20precisando%20de%20suporte%20t%C3%A9cnico." target="_blank" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group w-full">
                         <div class="bg-brand-accent p-3 rounded-lg text-brand-dark group-hover:scale-110 transition-transform"><i class="fas fa-headset text-2xl"></i></div>
                         <div><p class="text-brand-accent text-xs font-bold uppercase">Contate nosso</p><p class="text-white font-bold leading-tight">Suporte Técnico</p></div>
                     </a>
                     <!-- Button 3: Buy Plan (No message) -->
-                    <a href="https://wa.me/5583996367286" target="_blank" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group">
+                    <a href="https://wa.me/5583996367286" target="_blank" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group w-full">
                         <div class="bg-green-500 p-3 rounded-lg text-white group-hover:scale-110 transition-transform"><i class="fab fa-whatsapp text-2xl"></i></div>
                         <div><p class="text-brand-accent text-xs font-bold uppercase">Compre seu plano</p><p class="text-white font-bold leading-tight">Pelo WhatsApp!</p></div>
                     </a>
@@ -327,15 +325,20 @@
                 <div id="plans-track" class="flex transition-transform duration-500 ease-out md:flex md:flex-wrap md:justify-center md:gap-6 md:transform-none">
                     
                     <!-- Plan 1: Start 100MB -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
-                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                    <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">100 <span class="text-2xl">MEGA</span></h3>
                                 <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Start</p>
                             </div>
                             <div class="p-6 text-center bg-brand-dark relative">
-                                <div class="flex justify-center items-end gap-1 text-white">
+                                <!-- Ribbon -->
+                                <div class="absolute top-[-0.7rem] -right-2 bg-red-600 text-white text-[11px] font-bold px-3 py-1 shadow-md z-20">
+                                    R$ 69,90 após vencimento
+                                    <div class="absolute -bottom-2 right-0 w-0 h-0 border-t-[8px] border-t-red-800 border-r-[8px] border-r-transparent"></div>
+                                </div>
+                                <div class="flex justify-center items-end gap-1 text-white pt-2">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
                                     <span class="text-6xl font-black text-brand-accent">64</span>
                                     <div class="text-left mb-2">
@@ -343,15 +346,11 @@
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 69,90</p>
                                 <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div class="p-6 flex-1 flex flex-col justify-between rounded-b-3xl">
                                 <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
-                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi Incluso</li>
                                 </ul>
                                 <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Start%20(100%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
@@ -361,15 +360,20 @@
                     </div>
 
                     <!-- Plan 2: Turbo 200MB -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
-                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                    <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">200 <span class="text-2xl">MEGA</span></h3>
                                 <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Turbo</p>
                             </div>
                             <div class="p-6 text-center bg-brand-dark relative">
-                                <div class="flex justify-center items-end gap-1 text-white">
+                                <!-- Ribbon -->
+                                <div class="absolute top-[-0.7rem] -right-2 bg-red-600 text-white text-[11px] font-bold px-3 py-1 shadow-md z-20">
+                                    R$ 74,90 após vencimento
+                                    <div class="absolute -bottom-2 right-0 w-0 h-0 border-t-[8px] border-t-red-800 border-r-[8px] border-r-transparent"></div>
+                                </div>
+                                <div class="flex justify-center items-end gap-1 text-white pt-2">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
                                     <span class="text-6xl font-black text-brand-accent">69</span>
                                     <div class="text-left mb-2">
@@ -377,15 +381,13 @@
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 74,90</p>
                                 <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div class="p-6 flex-1 flex flex-col justify-between rounded-b-3xl">
                                 <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
-                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
+                                    <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
-                                    <li class="flex items-center gap-3"><i class="fas fa-tools text-brand-accent"></i> Instalação Grátis</li>
                                 </ul>
                                 <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Turbo%20(200%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
@@ -395,16 +397,20 @@
                     </div>
 
                     <!-- Plan 3: Ultra 400MB -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden md:-translate-y-2 border-2 border-brand-accent relative h-full flex flex-col transform scale-105 md:scale-100 lg:scale-105 z-10">
-                            <div class="absolute top-4 right-4 bg-brand-accent text-brand-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Mais Vendido</div>
-                            <div class="bg-brand-dark py-8 text-center relative overflow-hidden">
+                    <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-2xl relative group md:-translate-y-2 border-2 border-brand-accent h-full flex flex-col transform scale-105 md:scale-100 lg:scale-105 z-10">
+                            <div class="bg-brand-dark py-8 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-5xl font-black text-white italic">400 <span class="text-3xl">MEGA</span></h3>
                                 <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Ultra</p>
                             </div>
                             <div class="p-6 text-center bg-brand-primary relative">
-                                <div class="flex justify-center items-end gap-1 text-white">
+                                 <!-- Ribbon -->
+                                 <div class="absolute top-[-0.7rem] -right-2 bg-red-600 text-white text-[11px] font-bold px-3 py-1 shadow-md z-20">
+                                    R$ 84,90 após vencimento
+                                    <div class="absolute -bottom-2 right-0 w-0 h-0 border-t-[8px] border-t-red-800 border-r-[8px] border-r-transparent"></div>
+                                </div>
+                                <div class="flex justify-center items-end gap-1 text-white pt-2">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
                                     <span class="text-7xl font-black text-brand-accent">79</span>
                                     <div class="text-left mb-2">
@@ -412,10 +418,9 @@
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-300 text-xs line-through absolute top-2 right-4">R$ 84,90</p>
                                 <p class="text-white/80 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div class="p-6 flex-1 flex flex-col justify-between rounded-b-3xl">
                                 <ul class="space-y-3 text-gray-700 text-sm font-bold mb-6">
                                     <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-primary"></i> Wi-Fi 6 Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-primary"></i> Paramount+ Incluso</li>
@@ -430,15 +435,20 @@
                     </div>
 
                     <!-- Plan 4: Max 500MB -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
-                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                    <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">500 <span class="text-2xl">MEGA</span></h3>
                                 <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Max</p>
                             </div>
                             <div class="p-6 text-center bg-brand-dark relative">
-                                <div class="flex justify-center items-end gap-1 text-white">
+                                <!-- Ribbon -->
+                                <div class="absolute top-[-0.7rem] -right-2 bg-red-600 text-white text-[11px] font-bold px-3 py-1 shadow-md z-20">
+                                    R$ 99,90 após vencimento
+                                    <div class="absolute -bottom-2 right-0 w-0 h-0 border-t-[8px] border-t-red-800 border-r-[8px] border-r-transparent"></div>
+                                </div>
+                                <div class="flex justify-center items-end gap-1 text-white pt-2">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
                                     <span class="text-6xl font-black text-brand-accent">89</span>
                                     <div class="text-left mb-2">
@@ -446,10 +456,9 @@
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 99,90</p>
                                 <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div class="p-6 flex-1 flex flex-col justify-between rounded-b-3xl">
                                 <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
                                     <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
@@ -464,15 +473,20 @@
                     </div>
 
                     <!-- Plan 5: Power 700MB -->
-                    <div class="min-w-full px-4 md:px-0 md:min-w-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
-                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden">
+                    <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                            <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">700 <span class="text-2xl">MEGA</span></h3>
                                 <p class="text-brand-accent font-bold uppercase text-xs tracking-wider">LinkX Power</p>
                             </div>
                             <div class="p-6 text-center bg-brand-dark relative">
-                                <div class="flex justify-center items-end gap-1 text-white">
+                                <!-- Ribbon -->
+                                <div class="absolute top-[-0.7rem] -right-2 bg-red-600 text-white text-[11px] font-bold px-3 py-1 shadow-md z-20">
+                                    R$ 104,90 após vencimento
+                                    <div class="absolute -bottom-2 right-0 w-0 h-0 border-t-[8px] border-t-red-800 border-r-[8px] border-r-transparent"></div>
+                                </div>
+                                <div class="flex justify-center items-end gap-1 text-white pt-2">
                                     <span class="text-lg mb-4 opacity-70">R$</span>
                                     <span class="text-6xl font-black text-brand-accent">99</span>
                                     <div class="text-left mb-2">
@@ -480,10 +494,9 @@
                                         <span class="block text-xs opacity-70">/mês</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-xs line-through absolute top-2 right-4">R$ 104,90</p>
                                 <p class="text-white/60 text-sm mt-2">Internet Fibra Óptica</p>
                             </div>
-                            <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div class="p-6 flex-1 flex flex-col justify-between rounded-b-3xl">
                                 <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
                                     <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi 6 Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
@@ -621,7 +634,6 @@
     </section>
 
     <!-- App Section -->
-    <!-- Removed bg-brand-primary and clip-slant from parent section to prevent content clipping -->
     <section class="relative py-8 md:py-10 mb-20 reveal">
         <!-- Background Layer with Clip Path -->
         <div class="absolute inset-0 bg-brand-primary clip-slant z-0 h-full w-full"></div>
@@ -630,7 +642,7 @@
             <div class="flex-1 text-white">
                 <h2 class="text-4xl font-black uppercase mb-4">Baixe Nosso App</h2>
                 <p class="mb-8 text-white/80 max-w-lg">Gerencie com mais facilidade sua assinatura, retire 2ª via, desbloqueie sua conexão e fale com o suporte. Baixe agora mesmo nosso APP.</p>
-                <div class="flex gap-4">
+                <div class="flex flex-col sm:flex-row gap-4">
                     <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center gap-3 bg-black/30 hover:bg-black/50 border border-white/30 px-6 py-3 rounded-lg transition-all cursor-pointer">
                         <i class="fab fa-apple text-3xl"></i>
                         <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
@@ -724,7 +736,7 @@
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand-accent mt-1"></i><span>R. Leonardo Costa Vasconcelos, 1-51 - Malvinas, Campina Grande - PB, 58433-269</span></li>
                         <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand-accent"></i><span>(83) 99636-7286</span></li>
-                        <!-- <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand-accent"></i><span>contato@exemplo.com</span></li> -->
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand-accent"></i><span>contato@exemplo.com</span></li>
                     </ul>
                 </div>
             </div>
@@ -736,7 +748,121 @@
         <i class="fab fa-whatsapp text-3xl"></i>
     </a>
 
+    <!-- Boleto Modal -->
+    <div id="boleto-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeBoletoModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in">
+            <!-- Close Button -->
+            <button onclick="closeBoletoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Image Side -->
+            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-brand-dark/20"></div>
+                <!-- Added border-8 border-gray-900 to simulate phone frame -->
+                <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
+            </div>
+
+            <!-- Text Side -->
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center md:text-left">
+                <h3 class="text-3xl font-black text-brand-dark uppercase mb-4 leading-tight">
+                    Facilite sua vida com o <span class="text-brand-accent">App LinkX!</span>
+                </h3>
+                <p class="text-gray-600 mb-8 text-lg">
+                    Baixe agora nosso aplicativo e tenha acesso à sua <strong>2ª via do boleto</strong> em segundos, além de desbloqueio de confiança e muito mais.
+                </p>
+                
+                <div class="flex flex-col gap-3">
+                     <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors">
+                        <i class="fab fa-apple text-2xl"></i>
+                        <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.r3r.linkx" target="_blank" class="flex items-center justify-center gap-3 bg-brand-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-colors">
+                        <i class="fab fa-google-play text-xl"></i>
+                        <div class="text-left leading-tight"><span class="text-xs block">Disponível no</span><span class="font-bold">Google Play</span></div>
+                    </a>
+                </div>
+                
+                <p class="mt-6 text-xs text-center text-gray-400">Ou continue para o WhatsApp se preferir (mais lento)</p>
+                <button onclick="window.open('https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20a%202%C2%AA%20via%20do%20meu%20boleto.', '_blank')" class="text-brand-primary text-sm font-bold mt-2 hover:underline text-center block w-full">
+                    Solicitar via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client Center Modal (New) -->
+    <div id="client-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeClientModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in">
+            <!-- Close Button -->
+            <button onclick="closeClientModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Image Side -->
+            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-brand-dark/20"></div>
+                <!-- Reuse same app image -->
+                <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
+            </div>
+
+            <!-- Text Side -->
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center md:text-left">
+                <h3 class="text-3xl font-black text-brand-dark uppercase mb-4 leading-tight">
+                    Central do Assinante <span class="text-brand-accent">Completa!</span>
+                </h3>
+                <p class="text-gray-600 mb-8 text-lg">
+                    Tudo o que você precisa em um só lugar. Retire faturas, realize desbloqueio de confiança, verifique seu contrato e muito mais pelo nosso App.
+                </p>
+                
+                <div class="flex flex-col gap-3">
+                     <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors">
+                        <i class="fab fa-apple text-2xl"></i>
+                        <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.r3r.linkx" target="_blank" class="flex items-center justify-center gap-3 bg-brand-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-colors">
+                        <i class="fab fa-google-play text-xl"></i>
+                        <div class="text-left leading-tight"><span class="text-xs block">Disponível no</span><span class="font-bold">Google Play</span></div>
+                    </a>
+                </div>
+                
+                <p class="mt-6 text-xs text-center text-gray-400">Precisa de ajuda com o acesso?</p>
+                <button onclick="window.open('https://wa.me/5583996367286?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20para%20acessar%20a%20Central%20do%20Assinante.', '_blank')" class="text-brand-primary text-sm font-bold mt-2 hover:underline text-center block w-full">
+                    Fale com o Suporte
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal Logic
+        function openBoletoModal() {
+            document.getElementById('boleto-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeBoletoModal() {
+            document.getElementById('boleto-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function openClientModal() {
+            document.getElementById('client-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeClientModal() {
+            document.getElementById('client-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        
+        // Header Logic
         const header = document.getElementById('main-header');
         const headerInner = document.getElementById('header-inner');
         function updateHeader() {
@@ -755,12 +881,14 @@
         window.addEventListener('scroll', updateHeader);
         updateHeader();
 
+        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
         mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
+        // Hero Slider
         const slides = document.querySelectorAll('.slide-item');
         const dotsContainer = document.getElementById('slider-dots');
         const sliderElement = document.getElementById('home');
@@ -801,11 +929,13 @@
             if (e.changedTouches[0].screenX > touchStartX + 50) { prevSlide(); resetTimer(); }
         }, {passive: true});
 
+        // Plans Slider (Simple Grid Logic)
         const plansTrack = document.getElementById('plans-track');
         const plansDotsContainer = document.getElementById('plans-dots');
         const plansItems = plansTrack.querySelectorAll(':scope > div'); 
         let currentPlan = 0;
 
+        // Init Plans Dots
         plansItems.forEach((_, index) => {
             const dot = document.createElement('button');
             dot.className = `w-3 h-3 rounded-full transition-all border border-brand-primary ${index === 0 ? 'bg-brand-primary w-6' : 'bg-transparent'}`;
@@ -841,6 +971,7 @@
             else goToPlan(currentPlan);
         });
 
+        // --- PROFILE TABS LOGIC ---
         function switchProfileTab(type) {
             const residential = document.getElementById('profile-residential');
             const business = document.getElementById('profile-business');
@@ -872,6 +1003,7 @@
             }
         }
 
+        // Scroll Reveal
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -881,6 +1013,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
+        // Contact Form
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const nome = document.getElementById('nome').value;
