@@ -828,6 +828,7 @@
                             <i class="fas fa-phone-alt text-brand-accent"></i>
                             <a href="tel:+5583996367286" class="hover:text-brand-accent transition-colors">(83) 99636-7286</a>
                         </li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand-accent"></i><span>contato@exemplo.com</span></li>
                     </ul>
                 </div>
             </div>
@@ -844,44 +845,47 @@
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeBoletoModal()"></div>
         
-        <!-- Modal Content -->
-        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in">
-            <!-- Close Button -->
-            <button onclick="closeBoletoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl">
+        <!-- Modal Content Container (Fixed Height, No Scroll on Parent) -->
+        <div class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full flex flex-col animate-scale-in max-h-[90vh]">
+            
+            <!-- Close Button (Fixed relative to container, outside scroll view) -->
+            <button onclick="closeBoletoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl bg-white/90 rounded-full p-2 shadow-md backdrop-blur-sm transition-transform hover:scale-110">
                 <i class="fas fa-times"></i>
             </button>
 
-            <!-- Image Side -->
-            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden">
-                <div class="absolute inset-0 bg-brand-dark/20"></div>
-                <!-- Added border-8 border-gray-900 to simulate phone frame -->
-                <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
-            </div>
-
-            <!-- Text Side -->
-            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center md:text-left">
-                <h3 class="text-3xl font-black text-brand-dark uppercase mb-4 leading-tight">
-                    Facilite sua vida com o <span class="text-brand-accent">App LinkX!</span>
-                </h3>
-                <p class="text-gray-600 mb-8 text-lg">
-                    Baixe agora nosso aplicativo e tenha acesso à sua <strong>2ª via do boleto</strong> em segundos, além de desbloqueio de confiança e muito mais.
-                </p>
-                
-                <div class="flex flex-col gap-3">
-                     <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors">
-                        <i class="fab fa-apple text-2xl"></i>
-                        <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.r3r.linkx" target="_blank" class="flex items-center justify-center gap-3 bg-brand-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-colors">
-                        <i class="fab fa-google-play text-xl"></i>
-                        <div class="text-left leading-tight"><span class="text-xs block">Disponível no</span><span class="font-bold">Google Play</span></div>
-                    </a>
+            <!-- Scrollable Content Wrapper -->
+            <div class="overflow-y-auto flex flex-col md:flex-row w-full h-full rounded-3xl">
+                <!-- Image Side -->
+                <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden shrink-0 min-h-[300px]">
+                    <div class="absolute inset-0 bg-brand-dark/20"></div>
+                    <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
                 </div>
-                
-                <p class="mt-6 text-xs text-center text-gray-400">Ou continue para o WhatsApp se preferir (mais lento)</p>
-                <button onclick="window.open('https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20a%202%C2%AA%20via%20do%20meu%20boleto.', '_blank')" class="text-brand-primary text-sm font-bold mt-2 hover:underline text-center block w-full">
-                    Solicitar via WhatsApp
-                </button>
+
+                <!-- Text Side -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center md:text-left bg-white">
+                    <h3 class="text-3xl font-black text-brand-dark uppercase mb-4 leading-tight">
+                        Facilite sua vida com o <span class="text-brand-accent">App LinkX!</span>
+                    </h3>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        Baixe agora nosso aplicativo e tenha acesso à sua <strong>2ª via do boleto</strong> em segundos, além de desbloqueio de confiança e muito mais.
+                    </p>
+                    
+                    <div class="flex flex-col gap-3">
+                         <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors">
+                            <i class="fab fa-apple text-2xl"></i>
+                            <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.r3r.linkx" target="_blank" class="flex items-center justify-center gap-3 bg-brand-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-colors">
+                            <i class="fab fa-google-play text-xl"></i>
+                            <div class="text-left leading-tight"><span class="text-xs block">Disponível no</span><span class="font-bold">Google Play</span></div>
+                        </a>
+                    </div>
+                    
+                    <p class="mt-6 text-xs text-center text-gray-400">Ou continue para o WhatsApp se preferir (mais lento)</p>
+                    <button onclick="window.open('https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20a%202%C2%AA%20via%20do%20meu%20boleto.', '_blank')" class="text-brand-primary text-sm font-bold mt-2 hover:underline text-center block w-full">
+                        Solicitar via WhatsApp
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -891,44 +895,47 @@
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeClientModal()"></div>
         
-        <!-- Modal Content -->
-        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in">
-            <!-- Close Button -->
-            <button onclick="closeClientModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl">
+        <!-- Modal Content Container (Fixed Height, No Scroll on Parent) -->
+        <div class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full flex flex-col animate-scale-in max-h-[90vh]">
+            
+            <!-- Close Button (Fixed relative to container, outside scroll view) -->
+            <button onclick="closeClientModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl bg-white/90 rounded-full p-2 shadow-md backdrop-blur-sm transition-transform hover:scale-110">
                 <i class="fas fa-times"></i>
             </button>
 
-            <!-- Image Side -->
-            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden">
-                <div class="absolute inset-0 bg-brand-dark/20"></div>
-                <!-- Reuse same app image -->
-                <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
-            </div>
-
-            <!-- Text Side -->
-            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center md:text-left">
-                <h3 class="text-3xl font-black text-brand-dark uppercase mb-4 leading-tight">
-                    Central do Assinante <span class="text-brand-accent">Completa!</span>
-                </h3>
-                <p class="text-gray-600 mb-8 text-lg">
-                    Tudo o que você precisa em um só lugar. Retire faturas, realize desbloqueio de confiança, verifique seu contrato e muito mais pelo nosso App.
-                </p>
-                
-                <div class="flex flex-col gap-3">
-                     <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors">
-                        <i class="fab fa-apple text-2xl"></i>
-                        <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.r3r.linkx" target="_blank" class="flex items-center justify-center gap-3 bg-brand-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-colors">
-                        <i class="fab fa-google-play text-xl"></i>
-                        <div class="text-left leading-tight"><span class="text-xs block">Disponível no</span><span class="font-bold">Google Play</span></div>
-                    </a>
+            <!-- Scrollable Content Wrapper -->
+            <div class="overflow-y-auto flex flex-col md:flex-row w-full h-full rounded-3xl">
+                <!-- Image Side -->
+                <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden shrink-0 min-h-[300px]">
+                    <div class="absolute inset-0 bg-brand-dark/20"></div>
+                    <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
                 </div>
-                
-                <p class="mt-6 text-xs text-center text-gray-400">Precisa de ajuda com o acesso?</p>
-                <button onclick="window.open('https://wa.me/5583996367286?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20para%20acessar%20a%20Central%20do%20Assinante.', '_blank')" class="text-brand-primary text-sm font-bold mt-2 hover:underline text-center block w-full">
-                    Fale com o Suporte
-                </button>
+
+                <!-- Text Side -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center md:text-left bg-white">
+                    <h3 class="text-3xl font-black text-brand-dark uppercase mb-4 leading-tight">
+                        Central do Assinante <span class="text-brand-accent">Completa!</span>
+                    </h3>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        Tudo o que você precisa em um só lugar. Retire faturas, realize desbloqueio de confiança, verifique seu contrato e muito mais pelo nosso App.
+                    </p>
+                    
+                    <div class="flex flex-col gap-3">
+                         <a href="https://apps.apple.com/br/app/link-x-telecom/id6756694885" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors">
+                            <i class="fab fa-apple text-2xl"></i>
+                            <div class="text-left leading-tight"><span class="text-xs block">Download na</span><span class="font-bold">App Store</span></div>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.r3r.linkx" target="_blank" class="flex items-center justify-center gap-3 bg-brand-accent text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-colors">
+                            <i class="fab fa-google-play text-xl"></i>
+                            <div class="text-left leading-tight"><span class="text-xs block">Disponível no</span><span class="font-bold">Google Play</span></div>
+                        </a>
+                    </div>
+                    
+                    <p class="mt-6 text-xs text-center text-gray-400">Precisa de ajuda com o acesso?</p>
+                    <button onclick="window.open('https://wa.me/5583996367286?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20para%20acessar%20a%20Central%20do%20Assinante.', '_blank')" class="text-brand-primary text-sm font-bold mt-2 hover:underline text-center block w-full">
+                        Fale com o Suporte
+                    </button>
+                </div>
             </div>
         </div>
     </div>
