@@ -40,16 +40,26 @@
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
             color: transparent;
         }
+        
+        /* Custom Scrollbar - FRUFRU 1 */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+            background: #021024; 
         }
         ::-webkit-scrollbar-thumb {
-            background: #004AAD; 
+            background: linear-gradient(to bottom, #004AAD, #7AC142); 
             border-radius: 4px;
+            border: 2px solid #021024;
         }
+
+        /* Selection Color - FRUFRU 2 */
+        ::selection {
+            background-color: #7AC142;
+            color: #ffffff;
+        }
+
         @keyframes pulse-fast {
             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(122, 193, 66, 0.7); }
             50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(122, 193, 66, 0); }
@@ -57,6 +67,40 @@
         .animate-pulse-fast {
             animation: pulse-fast 1.5s infinite;
         }
+        
+        /* Float Animation - FRUFRU 3 */
+        @keyframes float-y {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: float-y 3s ease-in-out infinite;
+        }
+        /* Staggered delays for float */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Button Shine Effect - FRUFRU 4 */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+        .btn-shine:hover::after {
+            left: 100%;
+            transition: 0.5s; /* Slower transition for nicer effect */
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -111,6 +155,15 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Scale In Animation for Modal */
+        @keyframes scale-in {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-scale-in {
+            animation: scale-in 0.3s ease-out forwards;
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden bg-gray-50">
@@ -119,7 +172,10 @@
     <div class="bg-brand-dark py-2 hidden md:block border-b border-brand-primary/20 relative z-40">
         <div class="container mx-auto px-4 flex justify-between items-center text-sm text-gray-300 font-medium">
             <div class="flex items-center gap-6">
-                <span><i class="fas fa-headset text-brand-accent mr-2"></i>SAC: (83) 99636-7286</span>
+                <!-- Phone Link Added Here -->
+                <a href="tel:+5583996367286" class="hover:text-white transition-colors flex items-center group">
+                    <i class="fas fa-headset text-brand-accent mr-2 animate-bounce group-hover:text-white"></i>SAC: (83) 99636-7286
+                </a>
                 <span><i class="fas fa-map-marker-alt text-brand-accent mr-2"></i>Atendemos toda a região</span>
             </div>
             <span class="text-brand-accent font-bold tracking-wider text-xs">ESSE É UM BOM DIA PARA NAVEGAR NA INTERNET!</span>
@@ -130,21 +186,36 @@
     <header id="main-header" class="fixed z-50 left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out shadow-lg">
         <div id="header-inner" class="px-6 py-4 md:px-16 md:py-6 transition-all duration-500">
             <div class="flex justify-between items-center">
-                <a href="#" class="block">
+                <a href="#" class="block hover:scale-105 transition-transform duration-300">
                     <img src="img/logo-horizontal-branca.webp" alt="LinkX Telecom" class="h-16 md:h-24 w-auto object-contain">
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-white">
-                    <a href="#home" class="hover:text-brand-accent transition-colors">Home</a>
-                    <a href="#empresa" class="hover:text-brand-accent transition-colors">Empresa</a>
-                    <a href="#planos" class="hover:text-brand-accent transition-colors">Planos</a>
-                    <a href="#cobertura" class="hover:text-brand-accent transition-colors">Cobertura</a>
-                    <a href="#contato" class="hover:text-brand-accent transition-colors">Fale Conosco</a>
+                    <a href="#home" class="hover:text-brand-accent transition-colors relative group">
+                        Home
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#empresa" class="hover:text-brand-accent transition-colors relative group">
+                        Empresa
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#planos" class="hover:text-brand-accent transition-colors relative group">
+                        Planos
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#cobertura" class="hover:text-brand-accent transition-colors relative group">
+                        Cobertura
+                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contato" class="hover:text-brand-accent transition-colors relative group">
+                        Fale Conosco
+                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </nav>
 
                 <div class="hidden lg:block">
-                    <!-- Updated to Button triggering Modal -->
-                    <button onclick="openClientModal()" class="bg-brand-accent hover:bg-green-500 text-white text-sm font-bold py-2 px-6 rounded-full transition-all shadow-lg transform hover:scale-105">
+                    <!-- Updated to Button triggering Modal with Shine Effect -->
+                    <button onclick="openClientModal()" class="btn-shine bg-brand-accent hover:bg-green-500 text-white text-sm font-bold py-2 px-6 rounded-full transition-all shadow-lg transform hover:scale-105 border-2 border-transparent hover:border-white/20">
                         CENTRAL DO CLIENTE
                     </button>
                 </div>
@@ -157,13 +228,13 @@
 
         <div id="mobile-menu" class="hidden lg:hidden bg-brand-dark border-t border-brand-primary/30 w-full rounded-b-2xl">
             <nav class="flex flex-col p-4 gap-4 text-white">
-                <a href="#home" class="block hover:text-brand-accent mobile-link">Home</a>
-                <a href="#empresa" class="block hover:text-brand-accent mobile-link">Empresa</a>
-                <a href="#planos" class="block hover:text-brand-accent mobile-link">Planos</a>
-                <a href="#cobertura" class="block hover:text-brand-accent mobile-link">Cobertura</a>
-                <a href="#contato" class="block hover:text-brand-accent mobile-link">Fale Conosco</a>
+                <a href="#home" class="block hover:text-brand-accent mobile-link hover:pl-2 transition-all">Home</a>
+                <a href="#empresa" class="block hover:text-brand-accent mobile-link hover:pl-2 transition-all">Empresa</a>
+                <a href="#planos" class="block hover:text-brand-accent mobile-link hover:pl-2 transition-all">Planos</a>
+                <a href="#cobertura" class="block hover:text-brand-accent mobile-link hover:pl-2 transition-all">Cobertura</a>
+                <a href="#contato" class="block hover:text-brand-accent mobile-link hover:pl-2 transition-all">Fale Conosco</a>
                 <!-- Updated to Button triggering Modal -->
-                <button onclick="openClientModal()" class="block w-full bg-brand-accent text-white text-center py-2 rounded-lg font-bold">CENTRAL DO CLIENTE</button>
+                <button onclick="openClientModal()" class="block w-full bg-brand-accent text-white text-center py-2 rounded-lg font-bold btn-shine">CENTRAL DO CLIENTE</button>
             </nav>
         </div>
     </header>
@@ -173,16 +244,14 @@
         <div id="slider" class="h-full w-full relative">
             
             <!-- Slide 1: Velocidade -->
-            <!-- Added z-20 for active slide and ensured pointer-events-auto -->
             <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-100 slide-item z-20 pointer-events-auto">
                 <div class="absolute inset-0 bg-[url('img/slide-1-velocidade.webp')] bg-cover md:bg-center bg-no-repeat"></div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 
                 <div class="container mx-auto h-full px-4 relative flex items-center justify-end">
                     <div class="w-full md:w-1/2 md:flex md:justify-end reveal active">
-                        <!-- Glassmorphism Card (Moved down with mt-[12vh]) -->
-                        <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-[3vh] p-[4vh] border border-white/10 shadow-2xl text-center md:text-right flex flex-col justify-center mt-[12vh]">
-                            <!-- Tightened leading (leading-none) -->
+                        <!-- Glassmorphism Card -->
+                        <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-[3vh] p-[4vh] border border-white/10 shadow-2xl text-center md:text-right flex flex-col justify-center mt-[12vh] hover:shadow-brand-accent/20 transition-shadow duration-500">
                             <h2 class="text-[4vh] md:text-[6vh] font-bold uppercase leading-none mb-[2vh] drop-shadow-2xl text-white">
                                 Internet em <br>
                                 <span class="text-brand-accent text-[5vh] md:text-[7vh] italic">Ultra Velocidade</span>
@@ -205,8 +274,8 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Action Button - Ensured z-index relative -->
-                                <a href="#planos" class="relative z-30 inline-flex items-center justify-center gap-[1.5vh] bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-[2vh] px-[5vh] rounded-full shadow-2xl transition-all text-[2.2vh] uppercase tracking-wider transform hover:-translate-y-1">
+                                <!-- Action Button -->
+                                <a href="#planos" class="btn-shine relative z-30 inline-flex items-center justify-center gap-[1.5vh] bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-[2vh] px-[5vh] rounded-full shadow-2xl transition-all text-[2.2vh] uppercase tracking-wider transform hover:-translate-y-1">
                                     Ver Planos <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -216,16 +285,14 @@
             </div>
 
             <!-- Slide 2: Social -->
-            <!-- Added pointer-events-none and z-0 for inactive initial slides -->
             <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-0 slide-item pointer-events-none z-0">
                 <div class="absolute inset-0 bg-[url('img/slide-2-social-midia.webp')] bg-cover bg-center bg-no-repeat"></div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 
                 <div class="container mx-auto h-full px-4 relative flex items-center justify-start">
                     <div class="w-full md:w-1/2 reveal active">
-                         <!-- Glassmorphism Card (Moved down with mt-[12vh]) -->
-                        <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-[3vh] p-[4vh] border border-white/10 shadow-2xl text-center md:text-left flex flex-col justify-center mt-[12vh]">
-                            <!-- Tightened leading -->
+                         <!-- Glassmorphism Card -->
+                        <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-[3vh] p-[4vh] border border-white/10 shadow-2xl text-center md:text-left flex flex-col justify-center mt-[12vh] hover:shadow-brand-accent/20 transition-shadow duration-500">
                             <h2 class="text-[4vh] md:text-[6vh] font-black uppercase leading-none mb-[3vh] text-white drop-shadow-2xl">
                                 Curta o máximo de suas<br>
                                 <span class="text-brand-accent">Redes Sociais</span>
@@ -236,10 +303,10 @@
                             
                             <!-- Icons -->
                             <div class="flex justify-center md:justify-start gap-[3vh] text-[5vh] md:text-[7vh]">
-                                <a href="#" class="hover:text-pink-500 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="hover:text-red-600 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg"><i class="fab fa-youtube"></i></a>
-                                <a href="#" class="hover:text-blue-600 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="hover:text-black transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" class="hover:text-pink-500 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg animate-float delay-100"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="hover:text-red-600 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg animate-float delay-200"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="hover:text-blue-600 transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg animate-float delay-300"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="hover:text-black transition-transform hover:scale-110 duration-300 text-white drop-shadow-lg animate-float delay-300"><i class="fab fa-tiktok"></i></a>
                             </div>
                         </div>
                     </div>
@@ -253,9 +320,8 @@
                 
                 <div class="container mx-auto h-full px-4 relative flex items-center justify-end">
                     <div class="w-full md:w-1/2 md:flex md:justify-end reveal active">
-                        <!-- Glassmorphism Card (Moved down with mt-[12vh]) -->
-                        <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-[3vh] p-[4vh] border border-white/10 shadow-2xl text-center md:text-right flex flex-col justify-center mt-[12vh]">
-                            <!-- Tightened leading -->
+                        <!-- Glassmorphism Card -->
+                        <div class="md:w-3/4 bg-black/30 backdrop-blur-md rounded-[3vh] p-[4vh] border border-white/10 shadow-2xl text-center md:text-right flex flex-col justify-center mt-[12vh] hover:shadow-brand-accent/20 transition-shadow duration-500">
                             <h2 class="text-[4vh] md:text-[6vh] font-black uppercase leading-none mb-[2vh] drop-shadow-2xl text-white">
                                 Seus Jogos <br>
                                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-green-300">Sem LAG</span>
@@ -279,7 +345,7 @@
                                 </div>
                                 
                                 <!-- Action Button -->
-                                <a href="#planos" class="inline-flex items-center justify-center gap-[1.5vh] bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-[2vh] px-[5vh] rounded-full shadow-2xl transition-all text-[2.2vh] uppercase tracking-wider transform hover:-translate-y-1">
+                                <a href="#planos" class="btn-shine inline-flex items-center justify-center gap-[1.5vh] bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-black py-[2vh] px-[5vh] rounded-full shadow-2xl transition-all text-[2.2vh] uppercase tracking-wider transform hover:-translate-y-1">
                                     Ver Planos <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -291,8 +357,8 @@
         </div>
         
         <!-- Navigation Arrows -->
-        <button onclick="prevSlide(); resetTimer()" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-left text-xl"></i></button>
-        <button onclick="nextSlide(); resetTimer()" class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10"><i class="fas fa-chevron-right text-xl"></i></button>
+        <button onclick="prevSlide(); resetTimer()" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10 hover:scale-110 active:scale-95"><i class="fas fa-chevron-left text-xl"></i></button>
+        <button onclick="nextSlide(); resetTimer()" class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-brand-accent text-white p-4 rounded-full backdrop-blur-sm transition-all shadow-lg border border-white/10 hover:scale-110 active:scale-95"><i class="fas fa-chevron-right text-xl"></i></button>
         
         <div class="md:hidden absolute bottom-6 left-0 right-0 z-30 flex justify-center gap-2" id="slider-dots"></div>
     </section>
@@ -302,21 +368,21 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 <div class="text-white text-center lg:text-left flex-1">
-                    <h3 class="text-2xl font-black uppercase italic">Estamos online para atender você!</h3>
+                    <h3 class="text-2xl font-black uppercase italic drop-shadow-md">Estamos online para atender você!</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full lg:w-auto">
                     <!-- Button 1: 2nd Copy (Now opens modal) -->
-                    <button onclick="openBoletoModal()" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group text-left w-full">
+                    <button onclick="openBoletoModal()" class="animate-float delay-100 flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group text-left w-full hover:shadow-brand-accent/20">
                         <div class="bg-brand-accent p-3 rounded-lg text-brand-dark group-hover:scale-110 transition-transform"><i class="fas fa-barcode text-2xl"></i></div>
                         <div><p class="text-brand-accent text-xs font-bold uppercase">Acesse agora mesmo</p><p class="text-white font-bold leading-tight">Sua 2ª via do boleto</p></div>
                     </button>
                     <!-- Button 2: Support -->
-                    <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20estou%20precisando%20de%20suporte%20t%C3%A9cnico." target="_blank" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group w-full">
+                    <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20estou%20precisando%20de%20suporte%20t%C3%A9cnico." target="_blank" class="animate-float delay-200 flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group w-full hover:shadow-brand-accent/20">
                         <div class="bg-brand-accent p-3 rounded-lg text-brand-dark group-hover:scale-110 transition-transform"><i class="fas fa-headset text-2xl"></i></div>
                         <div><p class="text-brand-accent text-xs font-bold uppercase">Contate nosso</p><p class="text-white font-bold leading-tight">Suporte Técnico</p></div>
                     </a>
                     <!-- Button 3: Buy Plan (No message) -->
-                    <a href="https://wa.me/5583996367286" target="_blank" class="flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group w-full">
+                    <a href="https://wa.me/5583996367286" target="_blank" class="animate-float delay-300 flex items-center gap-4 bg-brand-dark hover:bg-black p-4 rounded-xl transition-colors border border-brand-primary shadow-lg group w-full hover:shadow-brand-accent/20">
                         <div class="bg-green-500 p-3 rounded-lg text-white group-hover:scale-110 transition-transform"><i class="fab fa-whatsapp text-2xl"></i></div>
                         <div><p class="text-brand-accent text-xs font-bold uppercase">Compre seu plano</p><p class="text-white font-bold leading-tight">Pelo WhatsApp!</p></div>
                     </a>
@@ -341,7 +407,7 @@
                     
                     <!-- Plan 1: Start 100MB -->
                     <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-all duration-300 border border-gray-100 h-full flex flex-col hover:shadow-2xl hover:shadow-brand-accent/20">
                             <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">100 <span class="text-2xl">MEGA</span></h3>
@@ -368,7 +434,7 @@
                                 <ul class="space-y-3 text-gray-700 text-sm font-medium mb-6">
                                     <li class="flex items-center gap-3"><i class="fas fa-wifi text-brand-accent"></i> Wi-Fi Incluso</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Start%20(100%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Start%20(100%20MB)" target="_blank" class="btn-shine block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
                                 </a>
                             </div>
@@ -377,7 +443,7 @@
 
                     <!-- Plan 2: Turbo 200MB -->
                     <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-all duration-300 border border-gray-100 h-full flex flex-col hover:shadow-2xl hover:shadow-brand-accent/20">
                             <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">200 <span class="text-2xl">MEGA</span></h3>
@@ -406,7 +472,7 @@
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Turbo%20(200%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Turbo%20(200%20MB)" target="_blank" class="btn-shine block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
                                 </a>
                             </div>
@@ -415,7 +481,7 @@
 
                     <!-- Plan 3: Ultra 400MB -->
                     <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-2xl relative group md:-translate-y-2 border-2 border-brand-accent h-full flex flex-col transform scale-105 md:scale-100 lg:scale-105 z-10">
+                        <div class="bg-white rounded-3xl shadow-2xl relative group md:-translate-y-2 border-2 border-brand-accent h-full flex flex-col transform scale-105 md:scale-100 lg:scale-105 z-10 hover:shadow-brand-accent/40 transition-all duration-300">
                             <div class="bg-brand-dark py-8 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-5xl font-black text-white italic">400 <span class="text-3xl">MEGA</span></h3>
@@ -444,7 +510,7 @@
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-primary"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-primary"></i> Watch Incluso</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Ultra%20(400%20MB)" target="_blank" class="block w-full bg-brand-primary hover:bg-blue-800 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase animate-pulse">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Ultra%20(400%20MB)" target="_blank" class="btn-shine block w-full bg-brand-primary hover:bg-blue-800 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase animate-pulse">
                                     Eu Quero
                                 </a>
                             </div>
@@ -453,7 +519,7 @@
 
                     <!-- Plan 4: Max 500MB -->
                     <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-all duration-300 border border-gray-100 h-full flex flex-col hover:shadow-2xl hover:shadow-brand-accent/20">
                             <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">500 <span class="text-2xl">MEGA</span></h3>
@@ -482,7 +548,7 @@
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Max%20(500%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Max%20(500%20MB)" target="_blank" class="btn-shine block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
                                 </a>
                             </div>
@@ -491,7 +557,7 @@
 
                     <!-- Plan 5: Power 700MB -->
                     <div class="md:min-w-0 min-w-full px-4 md:px-0 md:w-[30%] lg:w-[28%] flex-shrink-0 flex flex-col mb-6">
-                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-transform duration-300 border border-gray-100 h-full flex flex-col">
+                        <div class="bg-white rounded-3xl shadow-xl relative group hover:-translate-y-2 transition-all duration-300 border border-gray-100 h-full flex flex-col hover:shadow-2xl hover:shadow-brand-accent/20">
                             <div class="bg-brand-primary py-6 text-center relative overflow-hidden rounded-t-3xl">
                                 <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-rocket text-6xl text-white"></i></div>
                                 <h3 class="text-4xl font-black text-white italic">700 <span class="text-2xl">MEGA</span></h3>
@@ -520,7 +586,7 @@
                                     <li class="flex items-center gap-3"><i class="fas fa-tv text-brand-accent"></i> Paramount+ Incluso</li>
                                     <li class="flex items-center gap-3"><i class="fas fa-play-circle text-brand-accent"></i> Watch Incluso</li>
                                 </ul>
-                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Power%20(700%20MB)" target="_blank" class="block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
+                                <a href="https://wa.me/5583996367286?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Plano%20LinkX%20Power%20(700%20MB)" target="_blank" class="btn-shine block w-full bg-brand-accent hover:bg-green-600 text-white font-bold text-center py-4 rounded-xl shadow-lg transition-colors uppercase">
                                     Eu Quero
                                 </a>
                             </div>
@@ -751,8 +817,17 @@
                 <div>
                     <h4 class="text-white font-bold uppercase mb-4 border-l-4 border-brand-accent pl-2">Contato</h4>
                     <ul class="space-y-4 text-sm">
-                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand-accent mt-1"></i><span>R. Leonardo Costa Vasconcelos, 1-51 - Malvinas, Campina Grande - PB, 58433-269</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-brand-accent"></i><span>(83) 99636-7286</span></li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-brand-accent mt-1"></i>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=R.+Leonardo+Costa+Vasconcelos,+1-51+-+Malvinas,+Campina+Grande+-+PB,+58433-269" target="_blank" class="hover:text-brand-accent transition-colors">
+                                R. Leonardo Costa Vasconcelos, 1-51 - Malvinas, Campina Grande - PB, 58433-269
+                            </a>
+                        </li>
+                        <!-- Updated Phone Link -->
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-brand-accent"></i>
+                            <a href="tel:+5583996367286" class="hover:text-brand-accent transition-colors">(83) 99636-7286</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -770,14 +845,14 @@
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeBoletoModal()"></div>
         
         <!-- Modal Content -->
-        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in max-h-[90vh] overflow-y-auto">
-            <!-- Close Button (inside relative container but z-indexed) -->
-            <button onclick="closeBoletoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl bg-white/80 rounded-full p-2 shadow-sm backdrop-blur-sm">
+        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in">
+            <!-- Close Button -->
+            <button onclick="closeBoletoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl">
                 <i class="fas fa-times"></i>
             </button>
 
             <!-- Image Side -->
-            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden shrink-0">
+            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden">
                 <div class="absolute inset-0 bg-brand-dark/20"></div>
                 <!-- Added border-8 border-gray-900 to simulate phone frame -->
                 <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
@@ -817,14 +892,14 @@
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeClientModal()"></div>
         
         <!-- Modal Content -->
-        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in max-h-[90vh] overflow-y-auto">
+        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full flex flex-col md:flex-row animate-scale-in">
             <!-- Close Button -->
-            <button onclick="closeClientModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl bg-white/80 rounded-full p-2 shadow-sm backdrop-blur-sm">
+            <button onclick="closeClientModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-50 text-2xl">
                 <i class="fas fa-times"></i>
             </button>
 
             <!-- Image Side -->
-            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden shrink-0">
+            <div class="w-full md:w-1/2 bg-brand-primary p-8 flex items-center justify-center relative overflow-hidden">
                 <div class="absolute inset-0 bg-brand-dark/20"></div>
                 <!-- Reuse same app image -->
                 <img src="img/apk-img-link-x.webp" alt="App LinkX" class="relative z-10 w-48 shadow-2xl rounded-[2rem] transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 border-8 border-gray-900">
